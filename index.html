@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Précommande - Cortège Royal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #222;
+    }
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .price {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #000;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #333;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Précommandez le vinyle <em>Cortège Royal</em> de RETRO X</h1>
+  </header>
+  <main>
+    <img src="vinyle fond blanc.png" alt="Pochette vinyle Cortège Royal de RETRO X">
+    <p>Sorti le 12 février 2025, <strong>Cortège Royal</strong> est enfin disponible en précommande vinyle !</p>
+    <p class="price">29,99€</p>
+
+    <form action="https://www.paypal.com/pay" method="get">
+      <input type="text" name="name" placeholder="Nom complet" required />
+      <input type="email" name="email" placeholder="Adresse email" required />
+      <input type="text" name="address" placeholder="Adresse de livraison" required />
+      <input type="number" name="quantity" placeholder="Quantité" min="1" value="1" required />
+      <button type="submit">Précommander via PayPal</button>
+    </form>
+
+    <p class="note">
+      La production du vinyle ne sera lancée que si 50 précommandes sont atteintes. Si ce seuil n'est pas atteint, vous serez entièrement remboursé via PayPal.
+    </p>
+  </main>
+</body>
+</html>
