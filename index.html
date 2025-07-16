@@ -2,91 +2,101 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Précommande - Cortège Royal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Précommande - RETRO X - Cortège Royal</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
+      background: #f5f5f5;
       color: #222;
     }
     header {
-      background-color: #fff;
-      padding: 1rem 2rem;
+      background: black;
+      color: white;
+      padding: 20px;
       text-align: center;
-      border-bottom: 1px solid #ddd;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
     }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
     }
-    img {
+    .image {
+      flex: 1 1 300px;
+      background: #ddd;
+      text-align: center;
+    }
+    .image img {
       max-width: 100%;
       height: auto;
       display: block;
-      margin: 0 auto 2rem;
     }
-    h1 {
+    .info {
+      flex: 1 1 400px;
+      padding: 30px;
+    }
+    .info h2 {
+      margin-top: 0;
       font-size: 2rem;
-      margin-bottom: 0.5rem;
+    }
+    .info p {
+      margin: 10px 0;
+      font-size: 1rem;
     }
     .price {
       font-size: 1.5rem;
-      margin: 1rem 0;
+      color: #c40000;
       font-weight: bold;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    input, button {
-      padding: 0.75rem;
+    .counter {
+      margin: 20px 0;
       font-size: 1rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
     }
-    button {
-      background-color: #000;
+    .btn {
+      background: #007bff;
       color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border: none;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      border-radius: 5px;
     }
-    button:hover {
-      background-color: #333;
+    .btn:hover {
+      background: #0056b3;
     }
-    .note {
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 1rem;
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Précommandez le vinyle <em>Cortège Royal</em> de RETRO X</h1>
-  </header>
-  <main>
-    <img src="vinyle fond blanc.png" alt="Pochette vinyle Cortège Royal de RETRO X">
-    <p>Sorti le 12 février 2025, <strong>Cortège Royal</strong> est enfin disponible en précommande vinyle !</p>
-    <p class="price">29,99€</p>
-
-    <form action="https://www.paypal.com/pay" method="get">
-      <input type="text" name="name" placeholder="Nom complet" required />
-      <input type="email" name="email" placeholder="Adresse email" required />
-      <input type="text" name="address" placeholder="Adresse de livraison" required />
-      <input type="number" name="quantity" placeholder="Quantité" min="1" value="1" required />
-      <button type="submit">Précommander via PayPal</button>
-    </form>
-
-    <p class="note">
-      La production du vinyle ne sera lancée que si 50 précommandes sont atteintes. Si ce seuil n'est pas atteint, vous serez entièrement remboursé via PayPal.
-    </p>
-  </main>
+  <header>RETRO X — Cortège Royal</header>
+  <div class="container">
+    <div class="image">
+      <img src="vinyle fond blanc.png" alt="Vinyle Cortège Royal">
+    </div>
+    <div class="info">
+      <h2>Cortège Royal</h2>
+      <p><strong>Artiste :</strong> RETRO X</p>
+      <p><strong>Date de sortie :</strong> 12 février 2025</p>
+      <p class="price">29,99€</p>
+      <p class="counter">Précommandes : <strong id="count">12 / 50</strong></p>
+      <button class="btn">Précommander</button>
+      <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+        La production sera lancée à partir de 50 précommandes. Si ce nombre n'est pas atteint, vous serez remboursé via PayPal.
+      </p>
+    </div>
+  </div>
 </body>
 </html>
