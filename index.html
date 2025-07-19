@@ -2,116 +2,184 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Précommande - RETRO X - Cortège Royal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Précommande Vinyle - Cortège Royal</title>
   <style>
     body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1a1a1a;
+      color: #f2f2f2;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
-    }
-    header {
-      background: black;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 1.5rem;
-      letter-spacing: 1px;
+      padding: 0;
     }
     .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #262626;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .product {
       display: flex;
       flex-wrap: wrap;
-      max-width: 1000px;
-      margin: 40px auto;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 10px;
-      overflow: hidden;
+      gap: 2rem;
+      align-items: center;
     }
-    .image {
-      flex: 1 1 350px;
-      background: #ddd;
-      text-align: center;
-      padding: 20px;
+    .gallery {
+      flex: 1;
+      position: relative;
     }
-    .image img {
-      max-width: 100%;
-      max-height: 450px;
+    .gallery img {
+      width: 100%;
+      max-width: 400px;
       height: auto;
       display: block;
       border-radius: 10px;
     }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 0.5rem;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 50%;
+    }
+    .arrow.left {
+      left: -2rem;
+    }
+    .arrow.right {
+      right: -2rem;
+    }
     .info {
-      flex: 1 1 500px;
-      padding: 30px;
+      flex: 1;
     }
     .info h2 {
-      margin-top: 0;
-      font-size: 2rem;
+      margin: 0 0 1rem;
+      font-size: 1.8rem;
     }
     .info p {
-      margin: 10px 0;
-      font-size: 1rem;
+      margin: 0.5rem 0;
     }
-    .price {
+    .info b {
+      display: block;
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+    }
+    .countdown {
       font-size: 1.5rem;
-      color: #c40000;
-      font-weight: bold;
+      color: #ffcc00;
+      margin: 1rem 0;
     }
-    .counter {
-      margin: 15px 0;
-      font-size: 1rem;
+    .tracklist {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #444;
     }
-    .btn {
-      background: #007bff;
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 5px;
+    .tracklist h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
     }
-    .btn:hover {
-      background: #0056b3;
+    .tracklist ul {
+      list-style: none;
+      padding: 0;
     }
-    .section-title {
-      font-weight: bold;
-      margin-top: 20px;
-    }
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
+    .tracklist li {
+      margin-bottom: 0.3rem;
     }
   </style>
 </head>
 <body>
-  <header>RETRO X — Cortège Royal</header>
   <div class="container">
-    <div class="image">
-      <img src="vinyle fond blanc.png" alt="Vinyle Cortège Royal">
+    <h1>Précommander le vinyle - Cortège Royal</h1>
+    <div class="product">
+      <div class="gallery">
+        <span class="arrow left" onclick="changeImage(-1)">&#10094;</span>
+        <img id="vinylImage" src="cortege%20royal%20LA%20COVER.png" alt="Vinyle Cover">
+        <span class="arrow right" onclick="changeImage(1)">&#10095;</span>
+      </div>
+      <div class="info">
+        <h2>Cortège Royal - Retro X</h2>
+        <b>Résumé :</b>
+        <p>Après la sortie de <i>YellowTape 1</i> et <i>2</i> en 2023, Retro X revient deux ans plus tard avec l'album <i>Cortège Royal</i>, et donne accès à son tout premier vinyle avec les 18 titres les plus marquants de l'album.</p>
+        <b>Caractéristiques :</b>
+        <p><b>Artiste :</b> Retro X</p>
+        <p><b>Date de parution :</b> 2025</p>
+        <p><b>Edition limitée :</b> 100 exemplaires uniquement — ultra limité !</p>
+        <div class="countdown">
+          Sortie dans : <span id="timer">Chargement...</span>
+        </div>
+      </div>
     </div>
-    <div class="info">
-      <h2>Cortège Royal</h2>
 
-      <p class="section-title">Résumé :</p>
-      <p>Après la sortie de <strong>YellowTape 1 et 2</strong> en 2023, Retro X revient deux ans plus tard avec l’album <strong>Cortège Royal</strong>, et donne accès à son tout premier vinyle avec les 18 titres les plus marquants de ce projet unique.</p>
+    <div class="tracklist">
+      <h3>Tracklist</h3>
+      <p><b>Side A</b> :<br>
+      1. Barbecue<br>
+      2. Deadpool<br>
+      3. Babimurbaby<br>
+      4. Medecine take<br>
+      5. Rivière<br>
+      6. Mortadelle<br>
+      7. Diamants noir<br>
+      8. Le Hollandais<br>
+      9. Cortège Royal</p>
 
-      <p class="section-title">Caractéristiques :</p>
-      <p><strong>Artiste :</strong> RETRO X</p>
-      <p><strong>Date de parution :</strong> 12 février 2025</p>
-      <p class="price">29,99€</p>
-      <p style="color:#c40000; font-weight: bold;">Ultra limité : 100 exemplaires seulement</p>
-
-      <p class="counter">Précommandes : <strong id="count">12 / 50</strong></p>
-      <button class="btn">Précommander</button>
-
-      <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
-        La production sera lancée à partir de 50 précommandes. Si ce nombre n'est pas atteint, vous serez remboursé via PayPal.
-      </p>
+      <p><b>Side B</b> :<br>
+      10. Skol<br>
+      11. 2031<br>
+      12. Clignancourt<br>
+      13. Tri Martolod<br>
+      14. Massacre à la tronçonneuse<br>
+      15. Crazy girl<br>
+      16. Je ne canawok pas avec les peluches<br>
+      17. Un gothique et une bible<br>
+      18. CINDERELA</p>
     </div>
   </div>
+
+  <script>
+    const images = [
+      'cortege%20royal%20LA%20COVER.png',
+      'tracklist%20officielle%201.0.png',
+      'le%20vinyle%20tout%20seul.png'
+    ];
+    let index = 0;
+
+    function changeImage(direction) {
+      index = (index + direction + images.length) % images.length;
+      document.getElementById('vinylImage').src = images[index];
+    }
+
+    const releaseDate = new Date("2025-11-01T00:00:00").getTime();
+    const timerElement = document.getElementById("timer");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = releaseDate - now;
+
+      if (distance < 0) {
+        timerElement.innerHTML = "Disponible maintenant !";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      timerElement.innerHTML = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
