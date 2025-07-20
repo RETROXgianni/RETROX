@@ -12,8 +12,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #000010 0%, #0a0a0a 100%);
-      color: #eaeaea;
+      background: linear-gradient(180deg, #1a001f 0%, #0a0010 100%);
+      color: #f6f6f6;
     }
 
     header {
@@ -21,18 +21,18 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: black;
+      background: #120012;
     }
 
     header nav a {
-      color: white;
+      color: #fff;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
     }
 
     .hero {
-      background: url('37bce1d2-22b0-418f-ba31-9320cfb35297.png') center/cover no-repeat;
+      background: url('banière RX.png') center/cover no-repeat;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -47,7 +47,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), black);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), #1a001f);
     }
 
     .hero h1 {
@@ -66,8 +66,8 @@
 
     .btn-preco {
       margin-top: 2rem;
-      background: white;
-      color: black;
+      background: #ff0066;
+      color: white;
       padding: 1rem 2rem;
       font-weight: bold;
       text-decoration: none;
@@ -77,7 +77,7 @@
     }
 
     .btn-preco:hover {
-      background: #e1e1e1;
+      background: #e2005b;
     }
 
     .section {
@@ -92,7 +92,7 @@
     }
 
     .tracklist {
-      background: #111;
+      background: #29022b;
       padding: 2rem;
       border-radius: 10px;
       margin-top: 2rem;
@@ -102,8 +102,22 @@
       margin: 0.5rem 0;
     }
 
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
     footer {
-      background: #000;
+      background: #120012;
       color: white;
       text-align: center;
       padding: 2rem;
@@ -147,6 +161,13 @@
     <p><strong>Date de sortie :</strong> 1er novembre 2025</p>
     <p><strong>Prix :</strong> 29,99€</p>
     <p><strong>Résumé :</strong> Retro X revient avec l'album <i>Cortège Royal</i>, disponible pour la première fois en vinyle. 18 morceaux marquants, édition collector.</p>
+
+    <div class="image-grid">
+      <img src="vinyle%20fond%20blanc.png" alt="Vinyle blanc">
+      <img src="cortege%20royal%20LA%20COVER.png" alt="Cover officielle">
+      <img src="tracklist%20officielle%201.0.png" alt="Tracklist">
+      <img src="le%20vinyle%20tout%20seul.png" alt="Vinyle seul">
+    </div>
 
     <div class="tracklist">
       <strong>Face A :</strong>
