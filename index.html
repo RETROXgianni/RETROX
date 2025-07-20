@@ -5,222 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Précommande Vinyle - Cortège Royal</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
     body {
-      font-family: 'DM Serif Display', serif;
-      background: linear-gradient(#d4d4d4, #c9c9c9);
-      color: #111;
       margin: 0;
       padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #000010 0%, #0a0a0a 100%);
+      color: #eaeaea;
     }
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      border-radius: 12px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      background-color: #111;
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
-    }
-    .product {
+
+    header {
       display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: flex-start;
       justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: black;
     }
-    .gallery {
-      flex: 1;
-      position: relative;
-      max-width: 500px;
-    }
-    .gallery img {
-      width: 100%;
-      max-height: 500px;
-      object-fit: contain;
-      display: block;
-      border-radius: 10px;
-      background-color: #eee;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      background-color: rgba(0, 0, 0, 0.3);
+
+    header nav a {
       color: white;
-      padding: 0.5rem;
-      cursor: pointer;
-      user-select: none;
-      border-radius: 50%;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 600;
     }
-    .arrow.left {
-      left: -2rem;
-    }
-    .arrow.right {
-      right: -2rem;
-    }
-    .info {
-      flex: 1;
+
+    .hero {
+      background: url('37bce1d2-22b0-418f-ba31-9320cfb35297.png') center/cover no-repeat;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 1.5rem;
-      background: #fdfdfd;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .info h2 {
-      margin: 0;
-      font-size: 2.2rem;
-      color: #2a2a2a;
-    }
-    .info p {
-      margin: 0.4rem 0;
-    }
-    .info b {
-      display: block;
-      margin-top: 1.2rem;
-      font-size: 1.2rem;
-      color: #444;
-    }
-    .countdown {
-      font-size: 1.2rem;
-      color: #aa0000;
-      font-weight: bold;
-    }
-    .tracklist-inline {
-      font-size: 0.95rem;
-      margin-top: 1rem;
-      padding: 1rem;
-      background-color: #f0f0f0;
-      border-left: 4px solid #ccc;
-      border-radius: 4px;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      flex: 1;
-    }
-    .buy-button {
-      background-color: #111;
-      color: white;
-      font-weight: bold;
-      padding: 0.8rem 1.2rem;
-      border: none;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      align-self: flex-start;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #ccc;
-      margin: 2rem 0;
-    }
-    .footer {
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      margin-top: 3rem;
+      color: white;
+      position: relative;
     }
-    .footer a {
-      margin: 0 1rem;
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), black);
+    }
+
+    .hero h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 4rem;
+      z-index: 1;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      z-index: 1;
+      max-width: 600px;
+      margin-top: 1rem;
+    }
+
+    .btn-preco {
+      margin-top: 2rem;
+      background: white;
+      color: black;
+      padding: 1rem 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      z-index: 1;
+      transition: 0.3s;
+    }
+
+    .btn-preco:hover {
+      background: #e1e1e1;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tracklist {
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+
+    .tracklist p {
+      margin: 0.5rem 0;
+    }
+
+    footer {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    footer a {
+      margin: 0 0.5rem;
       display: inline-block;
     }
-    .footer img {
-      height: 30px;
+
+    footer img {
+      height: 24px;
       opacity: 0.7;
-      transition: opacity 0.3s;
+      transition: 0.3s;
     }
-    .footer img:hover {
+
+    footer img:hover {
       opacity: 1;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Précommander le vinyle - Cortège Royal</h1>
-    <div class="product">
-      <div class="gallery">
-        <span class="arrow left" onclick="changeImage(-1)">&#10094;</span>
-        <img id="vinylImage" src="vinyle%20fond%20blanc.png" alt="Vinyle Cover">
-        <span class="arrow right" onclick="changeImage(1)">&#10095;</span>
-      </div>
-      <div class="info">
-        <div>
-          <h2>Cortège Royal - Retro X</h2>
-          <button class="buy-button">Précommander — 29,99€</button>
-          <b>Résumé :</b>
-          <p>Après la sortie de <i>YellowTape 1</i> et <i>2</i> en 2023, Retro X revient deux ans plus tard avec l'album <i>Cortège Royal</i>, et donne accès à son tout premier vinyle avec les 18 titres les plus marquants de l'album.</p>
-          <hr>
-          <b>Caractéristiques :</b>
-          <p><b>Artiste :</b> Retro X</p>
-          <p><b>Date de parution :</b> 1er novembre 2025</p>
-          <p><b>Édition limitée :</b> 100 exemplaires uniquement — ultra limité !</p>
-          <div class="countdown">
-            Sortie dans : <span id="timer">Chargement...</span>
-          </div>
-        </div>
-      </div>
-      <div class="tracklist-inline">
-        <b>Tracklist :</b><br>
-        <b>Face A :</b> Barbecue, Deadpool, Babimurbaby, Medecine take, Rivière, Mortadelle, Diamants noir, Le Hollandais, Cortège Royal<br>
-        <b>Face B :</b> Skol, 2031, Clignancourt, Tri Martolod, Massacre à la tronçonneuse, Crazy girl, Je ne canawok pas avec les peluches, Un gothique et une bible, CINDERELA
-      </div>
+  <header>
+    <div>INDEX</div>
+    <nav>
+      <a href="#about">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Cortège Royal</h1>
+    <p>Édition limitée — Seulement 100 exemplaires pressés. Précommande exclusive.</p>
+    <a href="#preco" class="btn-preco">Précommander maintenant</a>
+  </section>
+
+  <section class="section" id="preco">
+    <h2>Détails du vinyle</h2>
+    <p><strong>Artiste :</strong> Retro X</p>
+    <p><strong>Date de sortie :</strong> 1er novembre 2025</p>
+    <p><strong>Prix :</strong> 29,99€</p>
+    <p><strong>Résumé :</strong> Retro X revient avec l'album <i>Cortège Royal</i>, disponible pour la première fois en vinyle. 18 morceaux marquants, édition collector.</p>
+
+    <div class="tracklist">
+      <strong>Face A :</strong>
+      <p>Barbecue, Deadpool, Babimurbaby, Medecine take, Rivière, Mortadelle, Diamants noir, Le Hollandais, Cortège Royal</p>
+      <strong>Face B :</strong>
+      <p>Skol, 2031, Clignancourt, Tri Martolod, Massacre à la tronçonneuse, Crazy girl, Je ne canawok pas avec les peluches, Un gothique et une bible, CINDERELA</p>
     </div>
-  </div>
-  <div class="footer">
+  </section>
+
+  <footer id="contact">
+    <p>Suivez Retro X :</p>
     <a href="https://open.spotify.com/artist/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
     <a href="https://instagram.com/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
     <a href="https://youtube.com/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
-  </div>
-
-  <script>
-    const images = [
-      'vinyle%20fond%20blanc.png',
-      'cortege%20royal%20LA%20COVER.png',
-      'tracklist%20officielle%201.0.png',
-      'le%20vinyle%20tout%20seul.png'
-    ];
-    let index = 0;
-
-    function changeImage(direction) {
-      index = (index + direction + images.length) % images.length;
-      document.getElementById('vinylImage').src = images[index];
-    }
-
-    const releaseDate = new Date("2025-11-01T00:00:00").getTime();
-    const timerElement = document.getElementById("timer");
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = releaseDate - now;
-
-      if (distance < 0) {
-        timerElement.innerHTML = "Disponible maintenant !";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      timerElement.innerHTML = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+  </footer>
 </body>
 </html>
