@@ -5,26 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Précommande Vinyle - Cortège Royal</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap');
 
     body {
-      font-family: 'Playfair Display', serif;
-      background-color: #f4f4f4;
+      font-family: 'Cormorant Garamond', serif;
+      background: linear-gradient(#f4f4f4, #eaeaea);
       color: #111;
       margin: 0;
       padding: 0;
     }
     .container {
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 2rem auto;
       padding: 2rem;
       background-color: #ffffff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
     }
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      margin-bottom: 2rem;
       text-align: center;
+      background-color: #111;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
     }
     .product {
       display: flex;
@@ -45,6 +50,7 @@
       display: block;
       border-radius: 10px;
       background-color: #eee;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .arrow {
       position: absolute;
@@ -69,32 +75,37 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 1.5rem;
+      background: #fdfdfd;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
     .info h2 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
     .info p {
-      margin: 0.5rem 0;
+      margin: 0.4rem 0;
     }
     .info b {
       display: block;
       margin-top: 1.2rem;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
     .countdown {
       font-size: 1.2rem;
       color: #aa0000;
+      font-weight: bold;
     }
     .tracklist-inline {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       margin-top: 1rem;
       padding: 1rem;
-      background-color: #f9f9f9;
+      background-color: #f0f0f0;
       border-left: 4px solid #ccc;
       border-radius: 4px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     .buy-button {
       background-color: #111;
@@ -103,10 +114,16 @@
       padding: 0.8rem 1.2rem;
       border: none;
       border-radius: 5px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       margin-top: 0.5rem;
       align-self: flex-start;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 2rem 0;
     }
   </style>
 </head>
@@ -125,6 +142,7 @@
           <button class="buy-button">Précommander — 29,99€</button>
           <b>Résumé :</b>
           <p>Après la sortie de <i>YellowTape 1</i> et <i>2</i> en 2023, Retro X revient deux ans plus tard avec l'album <i>Cortège Royal</i>, et donne accès à son tout premier vinyle avec les 18 titres les plus marquants de l'album.</p>
+          <hr>
           <b>Caractéristiques :</b>
           <p><b>Artiste :</b> Retro X</p>
           <p><b>Date de parution :</b> 1er novembre 2025</p>
