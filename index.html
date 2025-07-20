@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Précommande Vinyle - Cortège Royal</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
 
     body {
-      font-family: 'Libre Baskerville', serif;
-      background: linear-gradient(#e5e5e5, #dcdcdc);
+      font-family: 'DM Serif Display', serif;
+      background: linear-gradient(#d4d4d4, #c9c9c9);
       color: #111;
       margin: 0;
       padding: 0;
@@ -109,6 +109,7 @@
       border-radius: 4px;
       line-height: 1.6;
       margin-bottom: 1.5rem;
+      flex: 1;
     }
     .buy-button {
       background-color: #111;
@@ -128,6 +129,22 @@
       border-top: 1px solid #ccc;
       margin: 2rem 0;
     }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .footer a {
+      margin: 0 1rem;
+      display: inline-block;
+    }
+    .footer img {
+      height: 30px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .footer img:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -138,11 +155,6 @@
         <span class="arrow left" onclick="changeImage(-1)">&#10094;</span>
         <img id="vinylImage" src="vinyle%20fond%20blanc.png" alt="Vinyle Cover">
         <span class="arrow right" onclick="changeImage(1)">&#10095;</span>
-      </div>
-      <div class="tracklist-inline">
-        <b>Tracklist :</b><br>
-        <b>Face A :</b> Barbecue, Deadpool, Babimurbaby, Medecine take, Rivière, Mortadelle, Diamants noir, Le Hollandais, Cortège Royal<br>
-        <b>Face B :</b> Skol, 2031, Clignancourt, Tri Martolod, Massacre à la tronçonneuse, Crazy girl, Je ne canawok pas avec les peluches, Un gothique et une bible, CINDERELA
       </div>
       <div class="info">
         <div>
@@ -160,7 +172,17 @@
           </div>
         </div>
       </div>
+      <div class="tracklist-inline">
+        <b>Tracklist :</b><br>
+        <b>Face A :</b> Barbecue, Deadpool, Babimurbaby, Medecine take, Rivière, Mortadelle, Diamants noir, Le Hollandais, Cortège Royal<br>
+        <b>Face B :</b> Skol, 2031, Clignancourt, Tri Martolod, Massacre à la tronçonneuse, Crazy girl, Je ne canawok pas avec les peluches, Un gothique et une bible, CINDERELA
+      </div>
     </div>
+  </div>
+  <div class="footer">
+    <a href="https://open.spotify.com/artist/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
+    <a href="https://instagram.com/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+    <a href="https://youtube.com/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
   </div>
 
   <script>
@@ -202,4 +224,3 @@
   </script>
 </body>
 </html>
-
