@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop - Cortège Royal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #6c1e7c 0%, #b36be0 100%);
+      color: #f6f6f6;
+    }
+    header {
+      padding: 1rem 2rem;
+      background: #6c1e7c;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .shop-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      margin: 4rem auto;
+      max-width: 900px;
+    }
+    .shop-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(108, 30, 124, 0.10);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      width: 220px;
+      transition: transform 0.2s;
+    }
+    .shop-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(108, 30, 124, 0.18);
+    }
+    .shop-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      background: #fff;
+      opacity: 0.8;
+    }
+    .shop-item h2 {
+      font-size: 1.3rem;
+      margin: 0.5rem 0 1rem 0;
+      color: #ff0066;
+    }
+    .shop-item p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .shop-item a {
+      display: inline-block;
+      background: #ff0066;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .shop-item a:hover {
+      background: #b36be0;
+    }
+    footer {
+      background: #6c1e7c;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+    footer a {
+      margin: 0 0.5rem;
+      display: inline-block;
+    }
+    footer img {
+      height: 24px;
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+    footer img:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    SHOP
+  </header>
+
+  <div class="shop-container">
+    <div class="shop-item">
+      <img src="image1.png" alt="Vinyle (image 1)" />
+      <h2>Vinyle</h2>
+      <p>Précommande l’album Cortège Royal en édition limitée.</p>
+      <a href="precommande.html">Voir</a>
+    </div>
+    <div class="shop-item">
+      <img src="image2.png" alt="Polo (image 2)" />
+      <h2>Polo</h2>
+      <p>Découvre les polos exclusifs Retro X.</p>
+      <a href="#">Voir</a>
+    </div>
+    <div class="shop-item">
+      <img src="image3.png" alt="Peintures (image 3)" />
+      <h2>Peintures</h2>
+      <p>Explore les œuvres et peintures originales.</p>
+      <a href="#">Voir</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Suivez Retro X :</p>
+    <a href="https://open.spotify.com/artist/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
+    <a href="https://instagram.com/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+    <a href="https://youtube.com/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
+  </footer>
+</body>
+</html>
