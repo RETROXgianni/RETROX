@@ -113,6 +113,46 @@
     footer img:hover {
       opacity: 1;
     }
+
+    @media (max-width: 600px) {
+      .container, .shop-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 0 8px;
+        margin: 40px auto;
+      }
+      .left, .shop-item {
+        max-width: 100vw;
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 24px;
+      }
+      .cover-fly, .vinyl {
+        max-width: 95vw;
+        width: 100%;
+      }
+      .vinyl {
+        top: -6%;
+        right: -10%;
+        width: 60vw;
+        max-width: 260px;
+      }
+      .right, .right-inner {
+        min-width: 0;
+        transform: none;
+        padding: 0;
+        text-align: center;
+      }
+      .details-container {
+        flex-direction: column;
+        gap: 24px;
+      }
+      form {
+        padding: 18px;
+        margin: 30px auto;
+      }
+    }
   </style>
 </head>
 <body>
