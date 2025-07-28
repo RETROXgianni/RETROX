@@ -25,8 +25,11 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #fff; /* fond blanc */
+      background: #fff;
       color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .container {
@@ -38,6 +41,7 @@
       gap: 60px;
       padding: 0 20px;
       animation: fadeInUp 1.2s ease;
+      flex: 1 0 auto;
     }
 
     .left {
@@ -242,7 +246,8 @@
       color: rgb(0, 0, 0);
       text-align: center;
       padding: 2rem;
-      margin-top: 4rem;
+      margin-top: 0;
+      flex-shrink: 0;
     }
     footer a {
       margin: 0 0.5rem;
@@ -493,11 +498,13 @@
     }
   }, 9000); // 9 secondes
   </script>
-    <footer id="contact">
-    <p>Suivez Retro X :</p>
-    <a href="https://open.spotify.com/intl-fr/artist/1nzsygZNqmL6J2CLFcFN46" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
-    <a href="https://www.instagram.com/ultradigi_ciele/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
-    <a href="https://www.youtube.com/@cykavizion4436" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
-  </footer>
+</div> <!-- fin du .container -->
+
+<footer id="contact">
+  <p>Suivez Retro X :</p>
+  <a href="https://open.spotify.com/intl-fr/artist/1nzsygZNqmL6J2CLFcFN46" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
+  <a href="https://www.instagram.com/ultradigi_ciele/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+  <a href="https://www.youtube.com/@cykavizion4436" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
+</footer>
 </body>
 </html>
