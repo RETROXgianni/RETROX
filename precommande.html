@@ -45,38 +45,57 @@
     }
 
     .left {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5em;
-      max-width: 100vw;
-      width: 100vw;
-      margin-bottom: 18px;
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+      perspective: 1200px;
+      perspective-origin: 50% 50%;
     }
 
     .cover-fly {
-      width: 180px;
-      max-width: 40vw;
-      height: auto;
-      border-radius: 10px;
-      margin-right: 0.5em;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      width: 105%;
+      max-width: 550px;
+      border-radius: 13px;
       animation: float s ease-in-out infinite;
       /* Supprime ou commente la ligne ci-dessous */
       /* box-shadow: 0 20px 60px rgba(0, 0, 0, 0.774); */
       
     }
 
+    .vinyl-shadow {
+      position: absolute;
+      left: 0%;
+      bottom: -9%;
+      transform: translateX(-50%);
+      width: 750px;
+      height: 15px;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.377) 60%, rgba(0, 0, 0, 0.12) 80%, rgba(0,0,0,0) 100%);
+      z-index: -2;
+      filter: blur(5.5px);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .vinyl-shadow-large {
+      position: absolute;
+      left: 50%;
+      bottom: 4%;
+      transform: translateX(-50%);
+      width: 350px;
+      height: 40px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0) 100%);
+      z-index: -3;
+      filter: blur(6px);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
     .vinyl {
-      width: 120px;
-      max-width: 20vw;
-      height: auto;
-      margin-left: 0.5em;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: absolute;
       top: -18%;
       right: -80%;
+      width: 720px;
       z-index: -1;
       opacity: 0.9;
       animation: float 3.5s ease-in-out infinite;
@@ -360,74 +379,61 @@
     @media (max-width: 600px) {
   body {
     overflow-x: hidden;
-    background: #fff;
   }
   .container {
     flex-direction: column;
     align-items: center;
-    gap: 18px;
-    padding: 0 2vw;
-    margin: 10px auto;
+    gap: 30px;
+    padding: 0 4px;
+    margin: 20px auto;
     max-width: 100vw;
     width: 100vw;
     box-sizing: border-box;
   }
   .left {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
-    width: 100vw;
     max-width: 100vw;
-    margin-bottom: 18px;
+    width: 100vw;
+    min-width: 0;
+    margin-bottom: 24px;
+    position: relative;
+    left: 0;
   }
-  .cover-fly {
-    width: 38vw;
-    max-width: 38vw;
-    min-width: 80px;
-    margin-right: 0.5em;
+  .cover-fly, .vinyl, .vinyl-shadow, .vinyl-shadow-large {
+    max-width: 90vw;
+    width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .vinyl {
-    width: 22vw;
-    max-width: 22vw;
-    min-width: 50px;
-    margin-left: 0.5em;
+    top: -6%;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60vw;
+    max-width: 220px;
+    min-width: 100px;
   }
-  .vinyl-shadow, .vinyl-shadow-large {
-    display: none;
-  }
-  .right, .right-inner, .info-section, .details-section, form {
+  .right, .right-inner {
     min-width: 0;
     transform: none;
     padding: 0;
     text-align: center;
     width: 100vw;
     box-sizing: border-box;
-    margin: 0 auto;
-  }
-  .title, .artist, .preorder-btn {
-    color: #222 !important;
-    text-shadow: none !important;
-    opacity: 1 !important;
-    text-align: center;
   }
   .details-container {
     flex-direction: column;
-    gap: 18px;
+    gap: 24px;
     max-width: 100vw;
     width: 100vw;
     box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
   }
   form {
-    padding: 10px;
-    margin: 10px auto;
+    padding: 12px;
+    margin: 20px auto;
     max-width: 98vw;
     width: 98vw;
     box-sizing: border-box;
-    text-align: center;
   }
 }
   </style>
@@ -435,8 +441,10 @@
 <body>
 <a href="index.html" style="position:absolute;top:20px;left:20px;color:#222;text-decoration:none;font-weight:bold;">← Retour à l'accueil</a>
 <div class="container">
-  <div class="left" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+  <div class="left">
     <img src="cover-retro-x.jpg" alt="Cover Vinyle Retro X" class="cover-fly" />
+    <div class="vinyl-shadow vinyl-shadow-large"></div>
+    <div class="vinyl-shadow"></div>
     <img src="vinyle.png" alt="Vinyle" class="vinyl vinyl-rotate" />
   </div>
 
