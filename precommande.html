@@ -1,11 +1,131 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script>
+    // Timer ouverture précommande
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('btn-preco');
+      var timer = document.getElementById('timer-preco');
+      // Date cible d'ouverture (dans 2h, à adapter)
+      var now = new Date();
+      var target = new Date(now.getTime() + 2*60*60*1000); // 2h plus tard
+      // Le timer reste visible tant qu'aucune date de fin n'est définie
+      function updateTimer() {
+        var current = new Date();
+        var diff = target - current;
+        if (diff > 0) {
+          var h = Math.floor(diff/3600000);
+          var m = Math.floor((diff%3600000)/60000);
+          var s = Math.floor((diff%60000)/1000);
+          timer.textContent = 'Ouverture des précommandes dans ' + h + 'h ' + m + 'm ' + s + 's';
+          btn.disabled = true;
+          btn.style.opacity = '0.6';
+          btn.style.cursor = 'not-allowed';
+        } else {
+          timer.textContent = '';
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          btn.style.cursor = 'pointer';
+          btn.textContent = 'Précommander maintenant';
+        }
+      }
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    });
+  </script>
+  <script>
+    // Compteur dynamique d'exemplaires restants
+    document.addEventListener('DOMContentLoaded', function() {
+      var total = 100;
+      var vendus = Math.floor(Math.random()*40)+30; // Simule entre 30 et 70 vendus
+      var restants = total - vendus;
+      var compteur = document.getElementById('compteur-ex');
+      if (compteur) {
+        compteur.textContent = restants + ' exemplaires restants';
+      }
+    });
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Précommande — Retro X</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* Timer overlay sur le bouton précommande */
+    .preorder-btn-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+      height: auto;
+      min-height: 48px;
+    }
+    #btn-preco {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      border-radius: 12px;
+      min-height: 48px;
+      box-sizing: border-box;
+    }
+    #timer-preco {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.08em;
+      color: #fff;
+      background: rgba(0,0,0,1);
+      border-radius: 12px;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      min-height: 48px;
+      box-sizing: border-box;
+      animation: none;
+      transition: transform 0.3s, opacity 0.3s;
+#timer-preco:hover {
+  transform: scale(1.07);
+}
+    }
+    @keyframes zoomBtn {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+    /* Affiche l'image promotel uniquement sur mobile */
+    .promo-mobile-only-wrapper {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .promo-mobile-only-wrapper {
+        display: block !important;
+        width: 100%;
+        text-align: center;
+        background: #e8eaed !important;
+        border-radius: 18px;
+        padding: 18px 0 10px 0;
+        margin: 0 auto 0 auto;
+        width: 100vw;
+        max-width: 37000px;
+        box-sizing: border-box;
+      }
+      .promo-mobile-only {
+        background: transparent !important;
+        box-shadow: none !important;
+        border-radius: 14px;
+        width: 500%;
+        max-width: 450px;
+        margin: 0 auto;
+        display: inline-block;
+        /* Pour décaler l'image vers la gauche, modifiez la valeur ci-dessous : */
+        margin-left: -28px; /* ← modifiez cette valeur pour ajuster le décalage */
+      }
+    }
     :root {
       --bg-light: #d7ecf9; /* bleu très clair (rappel chemise) */
       --bg-box: #eaf4fb;
@@ -31,8 +151,101 @@
       display: flex;
       flex-direction: column;
     }
+    @media (max-width: 600px) {
+      body {
+        background: #fff !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+      .hero-mobile-bg {
+        background: #e8eaed !important;
+        border-radius: 0 0 24px 24px;
+        width: 100vw;
+        max-width: 100vw;
+        margin: 0 auto;
+        padding-bottom: 18px;
+      }
+      .container {
+        background: transparent !important;
+        border-radius: 0 !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 100vw;
+        width: 100vw;
+        box-sizing: border-box;
+        overflow-x: hidden !important;
+      }
+      .right, .right-inner {
+        min-width: 0;
+        transform: none;
+        padding: 0;
+        text-align: center;
+        width: 100vw;
+        max-width: 370px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        background: none;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .title {
+        color: #111 !important;
+        text-shadow: none !important;
+        opacity: 1 !important;
+        text-align: center;
+        font-size: 1.4em !important;
+        font-weight: 700 !important;
+        margin-bottom: 2px !important;
+        margin-top: 0 !important;
+      }
+      .artist {
+        color: #222 !important;
+        text-shadow: none !important;
+        opacity: 1 !important;
+        text-align: center;
+        font-size: 1.1em !important;
+        font-weight: 500 !important;
+        margin-bottom: 10px !important;
+        margin-top: 0 !important;
+      }
+      .preorder-btn {
+        color: #fff !important;
+        background: #222 !important;
+        font-size: 1.1em !important;
+        padding: 14px 0 !important;
+        border-radius: 30px !important;
+        margin: 18px auto 18px auto !important;
+        font-weight: 700 !important;
+        border: none !important;
+        width: 90vw !important;
+        max-width: 340px !important;
+        display: block !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        letter-spacing: 0.5px;
+        transition: background 0.2s;
+        min-height: 48px !important;
+        box-sizing: border-box !important;
+      }
+      #timer-preco {
+        border-radius: 30px !important;
+        min-height: 48px !important;
+        box-sizing: border-box !important;
+      }
+    }
 
     .container {
+/* Masquer cover et vinyle uniquement sur mobile */
+@media (max-width: 600px) {
+  .mobile-hide {
+    display: none !important;
+  }
+}
       max-width: 1200px;
       margin: 100px auto;
       display: flex;
@@ -130,7 +343,7 @@
       100% { transform: translateY(0) rotate(360deg);}
     }
 
-.right {
+    .right {
   flex: 1;
   min-width: 280px;
   display: flex;
@@ -192,12 +405,14 @@
       font-size: 2.8em;
       font-weight: 700;
       margin-bottom: 10px;
+      text-align: center !important;
     }
 
     .artist {
       font-size: 1.8em;
       font-weight: 500;
       margin-bottom: 30px;
+      text-align: center !important;
     }
 
     .preorder-btn {
@@ -216,21 +431,20 @@
 
     .preorder-btn:hover {
       background: #000000;
-      transform: scale(1.05);
     }
 
     .info-section {
       background: var(--bg-box);
-      padding: 30px 20px;
-      margin-top: 60px;
+      padding: 18px 20px;
+      margin-top: 24px;
       text-align: center;
       font-size: 1.1em;
     }
 
     .details-section {
       background: var(--bg-box);
-      padding: 60px 20px;
-      margin-top: 40px;
+      padding: 32px 20px;
+      margin-top: 18px;
     }
 
     .details-container {
@@ -264,6 +478,7 @@
     .tracklist, .infos {
       flex: 1;
       min-width: 280px;
+      text-align: center !important;
     }
 
     .tracklist h2, .infos h2 {
@@ -273,8 +488,21 @@
       border-bottom: 3px solid var(--text);
       display: inline-block;
       padding-bottom: 5px;
+        text-align: left !important;
     }
-
+  .tracklist, .infos {
+    text-align: left !important;
+    margin-left: 12px !important;
+    margin-right: 0 !important;
+  }
+  .right, .right-inner {
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .info-section, .details-section {
+    background: #fff !important;
+  }
     .tracklist strong {
       font-weight: 700;
       display: inline-block;
@@ -376,116 +604,190 @@
       }
     }
 
-    @media (max-width: 600px) {
-  body {
-    overflow-x: hidden;
-    background: #fff;
-    color: #222;
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden !important;
+    color: #000000 !important;
+    font-size: 1em;
+    width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    max-width: 100vw !important;
+    overscroll-behavior-x: none;
+  }
+  :root {
+    --bg-light: #fff;
+    --bg-box: #fff;
+  }
+  .hero-mobile-bg {
+    background: #e8eaed !important;
+    border-radius: 0 0 24px 24px;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0 auto;
+    padding-bottom: 18px;
   }
   .container {
+    background: transparent !important;
+    border-radius: 0 !important;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
-    padding: 0 2vw;
-    margin: 10px auto;
+    gap: 0;
+    padding: 0;
+    margin: 0 auto;
     max-width: 100vw;
     width: 100vw;
     box-sizing: border-box;
+    overflow-x: hidden !important;
   }
-  .left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    max-width: 100vw;
-    margin-bottom: 18px;
-    gap: 10px;
-  }
-  .cover-fly {
-    width: 38vw;
-    max-width: 38vw;
-    min-width: 80px;
-    border-radius: 10px;
-    margin: 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  }
-  .vinyl {
-    width: 22vw;
-    max-width: 22vw;
-    min-width: 50px;
-    margin: 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    opacity: 1;
-    position: static;
-    left: auto;
-    right: auto;
-    top: auto;
-    transform: none;
-  }
-  .vinyl-shadow, .vinyl-shadow-large {
-    display: none;
-  }
-  .right, .right-inner, .info-section, .details-section, form {
+  .right, .right-inner {
     min-width: 0;
     transform: none;
     padding: 0;
     text-align: center;
     width: 100vw;
-    box-sizing: border-box;
+    max-width: 370px;
     margin: 0 auto;
+    box-sizing: border-box;
+    background: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .title, .artist, .preorder-btn, .tracklist h2, .infos h2, .tracklist strong, .infos p {
+  .title {
+    color: #111 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    text-align: center;
+    font-size: 1.4em !important;
+    font-weight: 700 !important;
+    margin-bottom: 2px !important;
+    margin-top: 0 !important;
+  }
+  .artist {
     color: #222 !important;
     text-shadow: none !important;
     opacity: 1 !important;
     text-align: center;
+    font-size: 1.1em !important;
+    font-weight: 500 !important;
+    margin-bottom: 10px !important;
+    margin-top: 0 !important;
   }
-  .details-container {
+  .preorder-btn {
+    color: #fff !important;
+    background: #222 !important;
+    font-size: 1.1em !important;
+    padding: 14px 0 !important;
+    border-radius: 30px !important;
+    margin: 18px auto 18px auto !important;
+    font-weight: 700 !important;
+    border: none !important;
+    width: 90vw !important;
+    max-width: 340px !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+}
+  /* Images sous infos : desktop = alignées, mobile = à la ligne */
+.images-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  margin: 32px 0 0 0;
+}
+.images-row img {
+  max-width: 340px;
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  margin: 0;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.images-row img:hover {
+  box-shadow: 0 0 0 4px #22222222;
+}
+@media (max-width: 600px) {
+  .images-row {
     flex-direction: column;
     gap: 18px;
-    max-width: 100vw;
-    width: 100vw;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
   }
-  form {
-    padding: 10px;
-    margin: 10px auto;
-    max-width: 98vw;
-    width: 98vw;
-    box-sizing: border-box;
-    text-align: center;
+  .images-row img {
+    max-width: 75vw;
+    margin: 0 auto;
   }
+}
+/* Lightbox styles */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 18px;
+  box-shadow: 0 8px 40px #000a;
+  background: #fff;
+}
+.lightbox-close {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  font-size: 2.5em;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
 }
   </style>
 </head>
 <body>
 <a href="index.html" style="position:absolute;top:20px;left:20px;color:#222;text-decoration:none;font-weight:bold;">← Retour à l'accueil</a>
-<div class="container">
-  <div class="left">
-    <img src="cover-retro-x.jpg" alt="Cover Vinyle Retro X" class="cover-fly" />
-    <div class="vinyl-shadow vinyl-shadow-large"></div>
-    <div class="vinyl-shadow"></div>
-    <img src="vinyle.png" alt="Vinyle" class="vinyl vinyl-rotate" />
-  </div>
-
-<div class="right">
-  <div class="right-inner">
-    <div class="title">Cortege Royal</div>
-    <div class="artist">Retro X</div>
-    <a href="#form" class="preorder-btn">Précommander maintenant</a>
+<!-- Image promo mobile uniquement -->
+<div class="promo-mobile-only-wrapper">
+  <img src="promotel.png" alt="Promo Téléphone" class="promo-mobile-only" />
+</div>
+<!-- Début du fond gris mobile (jusqu'au bouton) -->
+<div class="hero-mobile-bg">
+  <div class="container">
+    <div class="left">
+      <img src="cover-retro-x.jpg" alt="Cover Vinyle Retro X" class="cover-fly mobile-hide" />
+      <div class="vinyl-shadow vinyl-shadow-large mobile-hide"></div>
+      <div class="vinyl-shadow mobile-hide"></div>
+      <img src="vinyle.png" alt="Vinyle" class="vinyl vinyl-rotate mobile-hide" />
+    </div>
+    <div class="right">
+      <div class="right-inner">
+        <div class="title">Cortege Royal</div>
+        <div class="artist">Retro X</div>
+        <div id="compteur-ex" style="margin-bottom:10px;font-weight:600;color:#ff0101;font-size:1.08em;"></div>
+        <div class="preorder-btn-wrapper">
+          <a href="virement.html" class="preorder-btn" id="btn-preco">Précommander maintenant</a>
+          <div id="timer-preco"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<!-- Fin du fond gris mobile -->
 
-
-
-
-
-  <div class="info-section">
-    Édition limitée à 100 exemplaires — Pressage unique. Expédition prévue courant 2025. Inclus : pochette imprimée, vinyle 2LP, livret digital.
+<!-- Le fond blanc commence ici, donc la tracklist et la suite sont sur fond blanc -->
+<div class="info-section">
+    Édition limitée à 100 exemplaires — Pressage unique. Inclus : pochette imprimée, vinyle.
   </div>
 
   <div class="details-section">
@@ -524,25 +826,52 @@
         <p><strong>Date de livraison estimée :</strong><br> 8 semaines après le lancement de la production</p>
       </div>
     </div>
+    <!-- Images sous les informations -->
+    <div class="images-row">
+      <img src="cover-retro-x.jpg" alt="Cover Retro X" class="zoomable-img" />
+      <img src="tracklist T1.png" alt="Tracklist T1" class="zoomable-img" />
+      <img src="vinyle.png" alt="Vinyle" class="zoomable-img" />
+    </div>
   </div>
 
-  <form id="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <h2>Précommander</h2>
-    <input type="text" name="name" placeholder="Votre nom" required>
-    <input type="email" name="email" placeholder="Votre email" required>
-    <textarea name="message" placeholder="Adresse de livraison / message..." rows="4"></textarea>
-    <button type="submit">Envoyer la précommande</button>
-  </form>
+</div>
 
-  <script>
-  setTimeout(function() {
-    var vinyl = document.querySelector('.vinyl-rotate');
-    if (vinyl) {
-      vinyl.classList.remove('vinyl-rotate');
-      vinyl.style.transform = 'rotate(0deg)';
-    }
-  }, 9000); // 9 secondes
-  </script>
+<script>
+setTimeout(function() {
+  var vinyl = document.querySelector('.vinyl-rotate');
+  if (vinyl) {
+    vinyl.classList.remove('vinyl-rotate');
+    vinyl.style.transform = 'rotate(0deg)';
+  }
+}, 9000); // 9 secondes
+
+// Lightbox zoom images
+const images = document.querySelectorAll('.zoomable-img');
+images.forEach(img => {
+  img.addEventListener('click', function() {
+    // Crée l'overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    // Ajoute l'image en grand
+    const bigImg = document.createElement('img');
+    bigImg.src = img.src;
+    bigImg.alt = img.alt;
+    bigImg.className = 'lightbox-img';
+    overlay.appendChild(bigImg);
+    // Ajoute le bouton de fermeture
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'lightbox-close';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.onclick = () => document.body.removeChild(overlay);
+    overlay.appendChild(closeBtn);
+    // Ferme aussi en cliquant sur le fond
+    overlay.onclick = (e) => {
+      if (e.target === overlay) document.body.removeChild(overlay);
+    };
+    document.body.appendChild(overlay);
+  });
+});
+</script>
 </div> <!-- fin du .container -->
 
 <footer id="contact">
