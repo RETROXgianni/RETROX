@@ -5,91 +5,220 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop - Cortège Royal</title>
   <style>
+    /* Effet de flou sur les textes des produits non disponibles */
+    .blurred-text {
+      filter: blur(7px);
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.7;
+    }
+    /* Effet pulsation sur le bouton Voir */
+    .shop-item a {
+      animation: pulseBtn 2.2s infinite alternate;
+    }
+    @keyframes pulseBtn {
+      0% { box-shadow: 0 2px 12px rgba(255,0,102,0.13); }
+      60% { box-shadow: 0 0 32px 0 rgba(255,0,102,0.22); }
+      100% { box-shadow: 0 2px 12px rgba(255,0,102,0.13); }
+    }
+    /* Effet lumière balayant l'image du vinyle au survol */
+    .halo-vinyle {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+    .halo-vinyle img {
+      position: relative;
+      z-index: 1;
+    }
+    .halo-vinyle::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -70%;
+      width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+      transition: left 0.7s cubic-bezier(.42,.0,.58,1);
+    }
+    .halo-vinyle:hover::after {
+      left: 100%;
+      transition: left 0.7s cubic-bezier(.42,.0,.58,1);
+    }
+    /* Animation fade-in sur les boîtes produits */
+    .shop-item {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInBox 1.1s cubic-bezier(.42,.0,.58,1) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+    @keyframes fadeInBox {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    /* Ombre portée douce sous chaque boîte */
+    .shop-item {
+      box-shadow: 0 8px 32px 0 rgba(60,30,80,0.18), 0 2px 12px rgba(255,0,102,0.08);
+    }
+    /* Glow au survol des images désactivées */
+    .shop-img-disabled:hover {
+      filter: grayscale(0.6) brightness(0.7) blur(0.5px) drop-shadow(0 0 16px #ff0066);
+      opacity: 0.85;
+      transition: filter 0.25s, opacity 0.25s;
+      cursor: not-allowed;
+    }
+    .shop-img-disabled {
+      filter: grayscale(0.8) brightness(0.5) blur(1px);
+      opacity: 0.7;
+    }
+    /* Fond animé gradient */
+    body {
+      background: linear-gradient(270deg, #2a1a2e, #4b2c4e, #1a1623, #3a2340);
+      background-size: 800% 800%;
+      animation: gradientMove 18s ease infinite;
+    }
+    @keyframes gradientMove {
+      0% {background-position:0% 50%}
+      50% {background-position:100% 50%}
+      100% {background-position:0% 50%}
+    }
+    .coming-soon {
+      display: block;
+      margin: 0.7rem auto 1.1rem auto;
+      font-size: 1.08rem;
+      color: #bbaed1;
+      background: rgba(40,30,60,0.18);
+      padding: 0.35rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 12px rgba(60,30,80,0.10);
+      width: fit-content;
+    }
     body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #7c1e5d 0%, #e06bcc 100%);
-      color: #f6f6f6;
+      background: linear-gradient(180deg, #2a1a2e 0%, #4b2c4e 60%, #1a1623 100%);
+      color: #f3eaf7;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
-    header {
-      padding: 1rem 2rem;
-      background: #9b3a72;
-      color: #fff;
-      font-weight: bold;
-      font-size: 2rem;
-    }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1.2rem 2rem;
+  background: linear-gradient(90deg, #2a1a2e 0%, #3a2340 100%);
+  color: #f3eaf7;
+  font-weight: bold;
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 16px rgba(60, 30, 80, 0.13);
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeInHeader 1.2s cubic-bezier(.42,.0,.58,1) forwards;
+}
+
+@keyframes fadeInHeader {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
     .shop-container {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 4rem;
-      margin: 6rem auto;
-      max-width: 1200px;
+      gap: 3.2rem;
+      margin: 4.5rem auto 2.5rem auto;
+      max-width: 1100px;
       flex: 1 0 auto;
     }
     .shop-item {
-      background: rgba(24, 8, 22, 0.12);
-      border-radius: 10px;
-      box-shadow: 0 2px 24px rgba(108, 30, 124, 0.13);
-      padding: 1rem 2rem;
+      background: rgba(40,30,60,0.38);
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(60, 30, 80, 0.18);
+      padding: 1.3rem 2.2rem;
       text-align: center;
-      width: 320px;
-      min-height: 480px;
-      transition: transform 0.25s, box-shadow 0.25s;
+      width: 310px;
+      min-height: 440px;
+      transition: transform 0.25s, box-shadow 0.25s, border 0.25s;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      backdrop-filter: blur(12px) saturate(1.2);
+      border: 2.5px solid rgba(180,160,220,0.18);
+    }
+    /* Glow au survol */
+    .shop-item:hover {
+      transform: scale(1.045);
+      box-shadow: 0 16px 48px 0 rgba(120,60,180,0.22), 0 2px 32px rgba(60, 30, 80, 0.28);
+      border: 2.5px solid rgba(255,0,102,0.22);
+    }
+    /* Bordure lumineuse sur le vinyle */
+    .shop-item:first-child {
+      border: 2.5px solid rgba(255,0,102,0.38);
+      box-shadow: 0 0 32px 0 rgba(255,0,102,0.18), 0 4px 32px rgba(60, 30, 80, 0.18);
     }
     .shop-item:hover {
-      transform: scale(1.07);
-      box-shadow: 0 12px 32px rgba(108, 30, 124, 0.22);
+      transform: scale(1.04);
+      box-shadow: 0 12px 32px rgba(60, 30, 80, 0.28);
     }
     .shop-item img {
-      width: 300px;
-      height: 340px;
-      object-fit: contain;
-      margin-bottom: 1.5rem;
-      border-radius: 12px;
-      background: #00000000;
-      opacity: 0.9;
-      transition: transform 0.25s;
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      border-radius: 14px;
+      background: #2a1a2e !important;
+      opacity: 0.93;
+      box-shadow: 0 2px 18px rgba(60, 30, 80, 0.13);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
     .shop-item:hover img {
-      transform: scale(1.13);
+      transform: scale(1.08);
+      box-shadow: 0 8px 32px rgba(60, 30, 80, 0.22);
     }
     .shop-item h2 {
-      font-size: 1.5rem;
-      margin: 0.7rem 0 1.2rem 0;
-      color: #ffffff;
+      font-size: 1.32rem;
+      margin: 0.6rem 0 1.1rem 0;
+      color: #e6d6f3;
+      font-family: 'Unbounded', sans-serif;
     }
     .shop-item p {
-      font-size: 1.08rem;
-      margin-bottom: 1.7rem;
+      font-size: 1.04rem;
+      margin-bottom: 1.3rem;
+      color: #cbb7e6;
     }
     .shop-item a {
       display: inline-block;
-      background: #ff0066;
+      background: rgba(255,0,102,0.18);
       color: #fff;
-      padding: 0.8rem 1.7rem;
-      border-radius: 8px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.2s;
       font-size: 1.08rem;
+      box-shadow: 0 2px 12px rgba(255,0,102,0.13);
+      border: 1.5px solid rgba(255,0,102,0.22);
+      backdrop-filter: blur(2px);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     }
     .shop-item a:hover {
-      background: #b36be0;
+      background: rgba(255,0,102,0.38);
+      color: #ffb3e6;
+      box-shadow: 0 4px 24px rgba(255,0,102,0.22);
     }
     footer {
-      background: #6c1e7c;
-      color: white;
+      background: linear-gradient(90deg, #2a1a2e 0%, #3a2340 100%);
+      color: #e6d6f3;
       text-align: center;
-      padding: 2rem;
+      padding: 1.5rem;
       margin-top: 0;
       flex-shrink: 0;
       width: 100%;
@@ -99,8 +228,8 @@
       display: inline-block;
     }
     footer img {
-      height: 28px;
-      opacity: 1;
+      height: 24px;
+      opacity: 0.93;
       transition: 0.3s;
     }
     footer img:hover {
@@ -117,9 +246,33 @@
         width: 90vw;
         min-height: 340px;
       }
+    }
+    @media (min-width: 901px) {
+      .shop-container {
+        gap: 2vw;
+        justify-content: center;
+      }
+      .shop-item {
+        width: 100%;
+        max-width: 600px;
+      }
+      .shop-item-vinyle {
+        max-width: 690px;
+        width: 100%;
+        min-height: 470px;
+      }
+      .img-vinyle {
+        width: 250px;
+        height: 250px;
+      }
       .shop-item img {
-        width: 140px;
-        height: 140px;
+        width: 100%;
+        height: auto;
+        max-width: 700px;
+        max-height: 700px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
     @media (max-width: 600px) {
@@ -139,9 +292,30 @@
         height: 110px;
       }
     }
-    .img-vinyle { width: 340px; height: 340px; }
-.img-polo   { width: 220px; height: 220px; }
-.img-peinture { width: 260px; height: 260px; }
+    .img-vinyle {
+      width: 260px;
+      height: 260px;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      border-radius: 14px;
+      background: #2a1a2e !important;
+      opacity: 0.93;
+      box-shadow: 0 2px 18px rgba(60, 30, 80, 0.13);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .shop-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      border-radius: 14px;
+      background: #2a1a2e !important;
+      opacity: 0.93;
+      box-shadow: 0 2px 18px rgba(60, 30, 80, 0.13);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
   </style>
 </head>
 <body>
@@ -150,23 +324,23 @@
   </header>
 
   <div class="shop-container">
-    <div class="shop-item">
-      <img src="image1.png" alt="Vinyle (image 1)" class="img-vinyle" />
+    <div class="shop-item shop-item-vinyle" style="--delay: .1s;">
+      <img src="cover-retro-x.jpg" alt="Vinyle (cover album)" class="shop-img img-vinyle" />
       <h2>Vinyle</h2>
       <p>Précommande l’album Cortège Royal en édition limitée.</p>
       <a href="precommande.html">Voir</a>
     </div>
-    <div class="shop-item">
-      <img src="image2.png" alt="Polo (image 2)" class="img-polo" />
-      <h2>Polo</h2>
-      <p>Découvre les polos exclusifs Retro X.</p>
-      <a href="#">Voir</a>
+    <div class="shop-item" style="--delay: .3s;">
+      <img src="polosombre.png" alt="Polo (image sombre)" class="shop-img shop-img-disabled" />
+      <span class="coming-soon">Coming Soon</span>
+      <h2 class="blurred-text">Polo</h2>
+      <p class="blurred-text">Découvre les polos exclusifs Retro X.</p>
     </div>
-    <div class="shop-item">
-      <img src="image3.png" alt="Peintures (image 3)" class="img-peinture" />
-      <h2>Peintures</h2>
-      <p>Explore les œuvres et peintures originales.</p>
-      <a href="#">Voir</a>
+    <div class="shop-item" style="--delay: .5s;">
+      <img src="peinture sombre.png" alt="Peintures (image sombre)" class="shop-img shop-img-disabled" />
+      <span class="coming-soon">Coming Soon</span>
+      <h2 class="blurred-text">Peintures</h2>
+      <p class="blurred-text">Explore les œuvres et peintures originales.</p>
     </div>
   </div>
 
