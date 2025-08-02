@@ -27,7 +27,7 @@
     @keyframes pulseBtn {
       0% { box-shadow: 0 2px 12px rgba(255,0,102,0.13); }
       60% { box-shadow: 0 0 32px 0 rgba(255,0,102,0.22); }
-      100% { box-shadow: 0 2px 12px rgba(221, 221, 221, 0.13); }
+      100% { box-shadow: 0 2px 12px rgba(255,0,102,0.13); }
     }
     /* Effet lumière balayant l'image du vinyle au survol */
     .halo-vinyle {
@@ -44,7 +44,7 @@
       position: absolute;
       top: 0; left: -70%;
       width: 60%; height: 100%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+      background: linear-gradient(120deg, transparent 0%, rgba(187, 25, 25, 0.18) 50%, transparent 100%);
       z-index: 2;
       pointer-events: none;
       transition: left 0.7s cubic-bezier(.42,.0,.58,1);
@@ -68,11 +68,11 @@
     }
     /* Ombre portée douce sous chaque boîte */
     .shop-item {
-      box-shadow: 0 8px 32px 0 rgba(60,30,80,0.18), 0 2px 12px rgba(161, 52, 96, 0.08);
+      box-shadow: none !important;
     }
     /* Glow au survol des images désactivées */
     .shop-img-disabled:hover {
-      filter: grayscale(0.6) brightness(0.7) blur(0.5px) drop-shadow(0 0 16px #ff0066);
+      filter: grayscale(0.6) brightness(0.7) blur(0.5px) drop-shadow(0 0 16px #ffffff);
       opacity: 0.85;
       transition: filter 0.25s, opacity 0.25s;
       cursor: not-allowed;
@@ -83,7 +83,7 @@
     }
     /* Fond animé gradient */
     body {
-      background: linear-gradient(270deg, #2a1a2e, #4b2c4e, #1a1623, #3a2340);
+      background: linear-gradient(270deg, #222, #444, #111, #333);
       background-size: 800% 800%;
       animation: gradientMove 18s ease infinite;
     }
@@ -96,53 +96,46 @@
       display: block;
       margin: 0.7rem auto 1.1rem auto;
       font-size: 1.08rem;
-      color: #bbaed1;
-      background: rgba(40,30,60,0.18);
+      color: #000000;
+      background: #f3f3f3;
       padding: 0.35rem 1.1rem;
       border-radius: 8px;
       font-weight: 600;
       letter-spacing: 0.04em;
-      box-shadow: 0 2px 12px rgba(60,30,80,0.10);
+      box-shadow: 0 2px 12px rgba(255, 255, 255, 0.1);
       width: fit-content;
     }
     html, body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #2a1a2e 0%, #4b2c4e 60%, #1a1623 100%);
-      color: #f3eaf7;
+      background: linear-gradient(180deg, #222 0%, #444 60%, #111 100%);
+      color: #222;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden !important;
       box-sizing: border-box;
     }
-header {
+    header {
   position: sticky;
   top: 0;
   z-index: 100;
   padding: 1.2rem 2rem;
-  background: linear-gradient(90deg, #1a1623 0%, #2a1a2e 100%);
-  color: #f6f6f6;
-  border-bottom: 2px solid #222;
+  background: linear-gradient(90deg, #222 0%, #444 100%);
+  color: #f3f3f3;
+  border-bottom: 2px solid #444;
   font-weight: bold;
   font-size: 2.2rem;
   letter-spacing: 0.04em;
-  box-shadow: 0 2px 16px rgba(60, 30, 80, 0.13);
-  opacity: 0;
-  transform: translateY(-30px);
-  animation: fadeInHeader 1.2s cubic-bezier(.42,.0,.58,1) forwards;
+  box-shadow: none;
+  opacity: 1;
+  transform: none;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-@keyframes fadeInHeader {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
     .shop-container {
       display: flex;
       justify-content: center;
@@ -153,9 +146,9 @@ header {
       flex: 1 0 auto;
     }
     .shop-item {
-      background: rgba(40,30,60,0.38);
+      background: #e4e0e3;
       border-radius: 18px;
-      box-shadow: 0 4px 32px rgba(60, 30, 80, 0.18);
+      box-shadow: none !important;
       padding: 1.3rem 2.2rem;
       text-align: center;
       width: 310px;
@@ -166,22 +159,22 @@ header {
       align-items: center;
       justify-content: flex-start;
       backdrop-filter: blur(12px) saturate(1.2);
-      border: 2.5px solid rgba(180,160,220,0.18);
+      border: 2.5px solid #000000;
     }
     /* Glow au survol */
     .shop-item:hover {
       transform: scale(1.045);
-      box-shadow: 0 16px 48px 0 rgba(120,60,180,0.22), 0 2px 32px rgba(60, 30, 80, 0.28);
-      border: 2.5px solid rgba(247, 0, 255, 0.22);
+      box-shadow: none !important;
+      border: 2.5px solid #bbb;
     }
     /* Bordure lumineuse sur le vinyle */
     .shop-item:first-child {
-      border: 2.5px solid rgba(0, 0, 0, 0.38)8
-      box-shadow: 0 0 32px 0 rgba(255,0,102,0.18), 0 4px 32px rgba(60, 30, 80, 0.18);
+      border: 2.5px solid #000000;
+      box-shadow: 0 0 32px 0 #000000, 0 4px 32px rgba(80, 80, 80, 0.13);
     }
     .shop-item:hover {
       transform: scale(1.04);
-      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.28);
+      box-shadow: none !important;
     }
     .shop-item img {
       width: 260px;
@@ -189,49 +182,49 @@ header {
       object-fit: cover;
       margin-bottom: 1.2rem;
       border-radius: 14px;
-      background: #2a1a2e !important;
+      background: #d3d2d2ea !important;
       opacity: 0.93;
-      box-shadow: 0 2px 18px rgba(60, 30, 80, 0.13);
+      box-shadow: none !important;
       transition: transform 0.25s, box-shadow 0.25s;
     }
     .shop-item:hover img {
       transform: scale(1.08);
-      box-shadow: 0 8px 32px rgba(60, 30, 80, 0.22);
+      box-shadow: none !important;
     }
     .shop-item h2 {
       font-size: 1.32rem;
       margin: 0.6rem 0 1.1rem 0;
-      color: #e6d6f3;
-      font-family: 'Unbounded', sans-serif;
+      color: #000000;
+      font-family: 'Inter', sans-serif;
     }
     .shop-item p {
       font-size: 1.04rem;
       margin-bottom: 1.3rem;
-      color: #cbb7e6;
+      color: #000000;
     }
     .shop-item a {
-      display: inline-block;
-      background: rgba(255,0,102,0.18);
-      color: #fff;
+      animation: none;
+      background: #000000;
+      color: #ffffff;
       padding: 0.7rem 1.5rem;
       border-radius: 10px;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.08rem;
-      box-shadow: 0 2px 12px rgba(255,0,102,0.13);
-      border: 1.5px solid rgba(255,0,102,0.22);
-      backdrop-filter: blur(2px);
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: none;
+      border: 1.5px solid #000000;
+      backdrop-filter: none;
+      transition: none;
     }
     .shop-item a:hover {
-      background: rgba(255,0,102,0.38);
-      color: #ffb3e6;
-      box-shadow: 0 4px 24px rgba(255,0,102,0.22);
+      background: #eee;
+      color: #222;
+      box-shadow: none;
     }
     footer {
-      background: linear-gradient(90deg, #201623 0%, #2a1a2e 100%);
-      color: #bbaed1;
-      border-top: 2px solid #222;
+      background: linear-gradient(90deg, #1a1919da 0%, #161616c0 100%);
+      color: #ffffff;
+      border-top: 2px solid #080808;
       text-align: center;
       padding: 1.5rem;
       margin-top: 0;
@@ -279,6 +272,7 @@ header {
         width: 310px;
         max-width: 310px;
         min-height: 440px;
+        height: 440px;
         padding: 1.3rem 2.2rem;
       }
       .shop-item img {
@@ -322,22 +316,22 @@ header {
       display:inline-flex;
       align-items:center;
       gap:0.6em;
-      background:linear-gradient(90deg,#3a2340 0%,#bbaed1 100%);
-      color:#f6f6f6;
+      background:#222;
+      color:#fff;
       padding:0.7rem 1.5rem;
       border-radius:30px;
       text-decoration:none;
       font-weight:bold;
       font-size:1.08rem;
-      box-shadow:0 2px 12px rgba(60,30,80,0.13);
       border:none;
       margin-right:1.2rem;
-      transition:background 0.2s,box-shadow 0.2s;
-    " onmouseover="this.style.background='#2a1a2e';this.style.boxShadow='0 0 24px #3a2340'" onmouseout="this.style.background='linear-gradient(90deg,#3a2340 0%,#bbaed1 100%)';this.style.boxShadow='0 2px 12px rgba(60,30,80,0.13)'">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 20v-6h4v6m5-8.5l-7-7-7 7M5 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3" stroke="#f6f6f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      box-shadow:none;
+      transition:none;
+    ">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M10 20v-6h4v6m5-8.5l-7-7-7 7M5 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       Accueil
     </a>
-    <span style="font-size:2.2rem;font-weight:bold;letter-spacing:0.04em;">SHOP</span>
+    <span style="font-size:2.2rem;font-weight:bold;letter-spacing:0.04em;color:#fff;">SHOP</span>
   </header>
 
   <div class="shop-container">
