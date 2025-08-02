@@ -36,12 +36,12 @@
   <script>
     // Compteur dynamique d'exemplaires restants
     document.addEventListener('DOMContentLoaded', function() {
-      var total = 100;
-      var vendus = Math.floor(Math.random()*40)+30; // Simule entre 30 et 70 vendus
-      var restants = total - vendus;
+      var seuil = 50;
+      var vendus = 0;
       var compteur = document.getElementById('compteur-ex');
       if (compteur) {
-        compteur.textContent = restants + ' exemplaires restants';
+        compteur.textContent = vendus + '/' + seuil + ' exemplaires vendues pour lancer la production';
+        compteur.style.fontSize = '0.95em';
       }
     });
   </script>
@@ -80,18 +80,16 @@
       font-weight: 700;
       font-size: 1.08em;
       color: #fff;
-      background: rgba(0,0,0,1);
+      background: #000;
       border-radius: 12px;
+      opacity: 1;
       z-index: 2;
-      pointer-events: none;
+      box-shadow: 0 2px 12px #0002;
       transition: opacity 0.3s, transform 0.3s;
-      min-height: 48px;
-      box-sizing: border-box;
-      animation: none;
-      transition: transform 0.3s, opacity 0.3s;
-#timer-preco:hover {
-  transform: scale(1.07);
-}
+    }
+    #timer-preco:hover {
+      opacity: 1;
+      transform: scale(1.04);
     }
     @keyframes zoomBtn {
       0% { transform: scale(1); }
@@ -548,6 +546,47 @@ footer {
       background: #333;
     }
 
+    /* Tracklist moderne */
+    .tracklist-table {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .track-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 18px;
+      font-size: 1.08em;
+    }
+    .track-title {
+      font-weight: 700;
+      font-size: 1.08em;
+      color: #222;
+      flex: 1;
+      text-align: left;
+      margin-right: 12px;
+      line-height: 1.1;
+    }
+    .track-artist {
+      font-weight: 400;
+      font-size: 0.98em;
+      color: #444;
+      margin-top: 2px;
+      margin-bottom: 0;
+      display: block;
+    }
+    .track-duration {
+      min-width: 54px;
+      font-size: 1.08em;
+      font-weight: 500;
+      color: #555;
+      text-align: right;
+      margin-left: 24px;
+      align-self: flex-start;
+    }
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -795,26 +834,30 @@ footer {
       <div class="tracklist">
         <h2>Tracklist</h2><br>
         <strong>FACE A</strong><br><br>
-        1. <strong>BARBECUE</strong><br>
-        2. <strong>DEADPOOL</strong><br>
-        3. <strong>BABIMURBABY</strong><br>
-        4. <strong>MEDECINE TAKE</strong><br>
-        5. <strong>RIVIÈRES</strong><br>
-        6. <strong>MORTADELLE</strong><br>
-        7. <strong>DIAMANTS NOIR</strong><br>
-        8. <strong>LE HOLLANDAIS</strong><br>
-        9. <strong>CORTEGE ROYAL</strong><br><br>
-
-        <strong>FACE B</strong><br><br>
-        10. <strong>SKOL</strong><br>
-        11. <strong>2031</strong><br>
-        12. <strong>CLIGNANCOURT</strong><br>
-        13. <strong>TRI MARTOLOD</strong><br>
-        14. <strong>MASSACRE À LA TRONÇONNEUSE</strong><br>
-        15. <strong>CRAZY GIRL !</strong><br>
-        16. <strong>JE NE CANAWOK PAS AVEC LES PELUCHES</strong><br>
-        17. <strong>UN GOTHIQUE ET UNE BIBLE</strong><br>
-        18. <strong>CINDERELA</strong>
+        <div class="tracklist-table">
+          <div class="track-row"><div><span class="track-title">1. <strong>BARBECUE</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">1:54</span></div>
+          <div class="track-row"><div><span class="track-title">2. <strong>DEADPOOL</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:03</span></div>
+          <div class="track-row"><div><span class="track-title">3. <strong>BABIMURBABY</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:17</span></div>
+          <div class="track-row"><div><span class="track-title">4. <strong>MEDECINE TAKE</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:30</span></div>
+          <div class="track-row"><div><span class="track-title">5. <strong>RIVIÈRES</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">1:26</span></div>
+          <div class="track-row"><div><span class="track-title">6. <strong>CROSSWORD</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:21</span></div>
+          <div class="track-row"><div><span class="track-title">7. <strong>MORTADELLE</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">1:58</span></div>
+          <div class="track-row"><div><span class="track-title">8. <strong>OCTOPUS DANIELA</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">3:06</span></div>
+          <div class="track-row"><div><span class="track-title">9. <strong>DIAMANTS NOIR</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">3:08</span></div>
+          <div class="track-row"><div><span class="track-title">10. <strong>LE HOLLANDAIS</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:09</span></div>
+          <div class="track-row"><div><span class="track-title">11. <strong>CORTEGE ROYAL</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:37</span></div>
+        </div>
+        <br><strong>FACE B</strong><br><br>
+        <div class="tracklist-table">
+          <div class="track-row"><div><span class="track-title">12. <strong>SKOL</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">3:08</span></div>
+          <div class="track-row"><div><span class="track-title">13. <strong>OH YEAH</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">5:16</span></div>
+          <div class="track-row"><div><span class="track-title">14. <strong>MADDISON BEAR</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:39</span></div>
+          <div class="track-row"><div><span class="track-title">15. <strong>DIOR ET GANGSTA</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">1:59</span></div>
+          <div class="track-row"><div><span class="track-title">16. <strong>2031</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:11</span></div>
+          <div class="track-row"><div><span class="track-title">17. <strong>CLIGNANCOURT</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">2:36</span></div>
+          <div class="track-row"><div><span class="track-title">18. <strong>TRI MARTOLOD</strong></span><span class="track-artist">Retro X</span></div><span class="track-duration">1:49</span></div>
+        </div>
+    <!-- Tracklist alignée : titres à gauche, durées à droite -->
       </div>
       <div class="infos">
         <h2>Informations</h2>
