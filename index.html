@@ -36,11 +36,12 @@
 
     body::before {
       content: "";
-      position: absolute;
+      position: fixed;
       left: 0; right: 0;
-      top: 60px; /* laisse le header non flouté */
-      height: calc(100vh - 180px); /* 60px header + 120px footer */
-      z-index: 0;
+      top: 0;
+      bottom: 0;
+      height: 100vh;
+      z-index: -1;
       background: url('banière RX.png') center center/cover no-repeat;
       filter: blur(10px) brightness(0.7);
       opacity: 1;
@@ -78,8 +79,7 @@
 
     .hero {
       background: url('banière RX.png') center/cover no-repeat;
-      min-height: 420px;
-      height: auto;
+      height: 95vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -162,8 +162,7 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      margin-top: 0 !important;
-      top: -32px;
+      margin-top: 0;
     }
 
     footer a {
