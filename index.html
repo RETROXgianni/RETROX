@@ -7,12 +7,21 @@
   <style>
     /* Animation typing sur le titre RETRO X */
     .hero h1 {
+/* Masque le header et le footer sur desktop */
+header, footer {
+  display: none;
+}
+
       overflow: hidden;
+  header, footer {
+    display: block;
+  }
       border-right: .18em solid #ff0066;
       white-space: nowrap;
       letter-spacing: 0.04em;
       animation: typing 0.9s steps(8, end), blinkCaret 0.7s step-end infinite alternate;
     }
+    
     @keyframes typing {
       from { width: 0 }
       to { width: 8ch }
@@ -34,20 +43,23 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-    body::before {
-      content: "";
-      position: fixed;
-      left: 0; right: 0;
-      top: 0;
-      bottom: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      background: url('banière RX.png') center center/cover no-repeat;
-      filter: blur(6px) brightness(1);
-      opacity: 1;
-      pointer-events: none;
-    }
+/* La bannière floutée en arrière-plan n'est affichée que sur mobile */
+@media (max-width: 600px) {
+  body::before {
+    content: "";
+    position: fixed;
+    left: 0; right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background: url('banière RX.png') center center/cover no-repeat;
+    filter: blur(6px) brightness(1);
+    opacity: 1;
+    pointer-events: none;
+  }
+}
     body {
       position: relative;
       z-index: 1;
@@ -73,7 +85,7 @@
     }
 
     header nav a {
-      color: #fff;
+      color: #47093f;
       margin-left: 0;
       margin-right: 1rem;
       text-decoration: none;
@@ -83,14 +95,16 @@
     .hero {
       position: relative;
       background: url('banière RX.png') center/cover no-repeat;
-      height: 95vh;
+      width: 100vw;
+      height: 100vh;
+      min-width: 100vw;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: rgb(250, 250, 250);
-      position: relative;
       overflow: hidden;
     }
 
@@ -140,7 +154,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: -7mm;
+      bottom: 2mm;
       z-index: 2;
       background: none;
       color: white;
@@ -219,14 +233,11 @@
         margin-top: 0;
       }
     }
+
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-    </nav>
-    <div></div>
-  </header>
+  <!-- Header supprimé -->
 
   <section class="hero">
     <h1>RETRO X</h1>
