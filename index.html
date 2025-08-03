@@ -8,14 +8,14 @@
   <title>Accueil - Retro X</title>
   <meta property="og:title" content="Retro X" />
   <meta property="og:description" content="Découvre l'univers Retro X !" />
-  <meta property="og:image" content="cover retro x.jpg" />
+  <meta property="og:image" content="https://ton-site.com/cover%20retro%20x.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ton-site.com/" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Retro X" />
   <meta name="twitter:description" content="Découvre l'univers Retro X !" />
-  <meta name="twitter:image" content="cover retro x.jpg" />
+  <meta name="twitter:image" content="https://ton-site.com/cover%20retro%20x.jpg" />
   <style>
     body {
       margin: 0;
@@ -164,6 +164,18 @@
         margin: 0 auto;
         z-index: 1;
         /* Pas de width/height forcé, image brute centrée */
+      }
+      .banner-mobile {
+        width: 1000vw !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: 70vh !important;
+        left: 50%;
+        top: 10vh;
+        transform: translateX(-50%);
+        position: absolute;
+        object-fit: contain !important;
+        z-index: 0;
       }
       .cinema-header, .cinema-footer {
         display: flex;
