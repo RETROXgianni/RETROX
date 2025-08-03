@@ -133,10 +133,15 @@
         /* On garde la taille et le style d'origine */
       }
       .hero h1 {
-        top: 28%; /* Ajuste si besoin pour être bien centré sur la bannière */
+        top: 30%; /* Ajuste si besoin pour être bien centré sur la bannière */
+        white-space: nowrap;         /* Empêche le retour à la ligne */
+        font-size: 4.2rem !important; /* Plus petit si besoin */
+        max-width: 90vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .hero .btn-preco {
-        top: 42%; /* Ajuste si besoin pour être bien sous le titre */
+        top: 38%; /* Plus d'espace sous le titre */
       }
       .banner-desktop {
         display: none !important;
