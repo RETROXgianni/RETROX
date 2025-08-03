@@ -28,6 +28,18 @@
       overflow: hidden;
       background: none;
     }
+    .banner-desktop {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
     .banner-mobile {
       display: block !important;
       width: 100vw !important;
@@ -81,27 +93,127 @@
       vertical-align: middle;
     }
     @media (max-width: 600px) {
+      html, body {
+        height: 100vh !important;
+        overflow: hidden !important;
+        position: fixed;
+        width: 100vw;
+        touch-action: none;
+      }
       .hero {
         min-height: 100vh !important;
         height: 100vh !important;
+        margin-top: 48px !important;
+        margin-bottom: 70px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: none;
+        overflow: hidden;
+      }
+      .hero {
+        position: relative;
+      }
+      .hero h1,
+      .hero .btn-preco {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        /* On garde la taille et le style d'origine */
+      }
+      .hero h1 {
+        top: 28%; /* Ajuste si besoin pour être bien centré sur la bannière */
+      }
+      .hero .btn-preco {
+        top: 42%; /* Ajuste si besoin pour être bien sous le titre */
+      }
+      .banner-desktop {
+        display: none !important;
       }
       .banner-mobile {
-        height: 100vh !important;
-        max-height: 100vh !important;
+        display: block !important;
+        position: relative;
+        max-width: 100vw;
+        height: auto;
+        margin: 0 auto;
+        z-index: 1;
+        /* Pas de width/height forcé, image brute centrée */
+      }
+      .cinema-header, .cinema-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        background: #111;
+        color: #fff;
+        position: fixed;
+        left: 0;
+        z-index: 10;
+        font-family: 'Unbounded', sans-serif;
+        letter-spacing: 0.08em;
+      }
+      .cinema-header {
+        top: 0;
+        height: 48px;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #222;
+      }
+      .cinema-footer {
+        bottom: 0;
+        height: 70px;
+        flex-direction: column;
+        border-top: 2px solid #222;
+        padding: 0;
+      }
+      .cinema-footer span {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+        margin-top: 6px;
+      }
+      .cinema-footer a img {
+        height: 28px;
+        margin: 0 8px;
+        vertical-align: middle;
       }
       footer {
-        position: fixed;
+        display: none !important;
+      }
+    }
+    @media (min-width: 601px) {
+      .cinema-header,
+      .cinema-footer {
+        display: none !important;
+      }
+      .banner-mobile {
+        display: none !important;
       }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Bandes cinéma UNIQUEMENT sur mobile -->
+  <div class="cinema-header">
+    <span>&copy; 2025</span>
+  </div>
   <section class="hero">
+    <img src="banière RX.png" alt="Bannière Retro X" class="banner-desktop" />
     <img src="banière RX.png" alt="Bannière Retro X" class="banner-mobile" />
     <h1>RETRO X</h1>
     <a href="shop.html" class="btn-preco">Shop</a>
   </section>
+  <div class="cinema-footer">
+    <span>Suivez Retro X :</span>
+    <div>
+      <a href="https://open.spotify.com/intl-fr/artist/1nzsygZNqmL6J2CLFcFN46" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
+      <a href="https://www.instagram.com/ultradigi_ciele/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+      <a href="https://www.youtube.com/@cykavizion4436" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
+    </div>
+  </div>
   <footer>
     <span style="font-weight:600;display:block;margin-bottom:8px;">Suivez Retro X :</span>
     <a href="https://open.spotify.com/intl-fr/artist/1nzsygZNqmL6J2CLFcFN46" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
