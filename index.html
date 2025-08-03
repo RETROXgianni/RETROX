@@ -96,10 +96,17 @@
     }
     @media (max-width: 600px) {
       html, body {
-        height: 100vh !important;
-        overflow: hidden !important;
+        /* On retire position: fixed et overflow: hidden pour permettre un léger scroll */
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
         width: 100vw;
-        touch-action: none;
+        touch-action: pan-y;
+      }
+      .hero {
+        min-height: 110vh !important; /* Donne un peu plus de hauteur pour slider */
+        height: auto !important;
       }
       .hero {
         min-height: 100vh !important;
