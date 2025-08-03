@@ -104,6 +104,13 @@
       margin: 0 8px;
       vertical-align: middle;
     }
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
     @media (max-width: 600px) {
       html, body {
         height: 100vh !important;
@@ -252,6 +259,36 @@
         height: 22px;
         margin: 0 4px;
       }
+      .footer-logos {
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 16px !important;
+        margin-top: 8px !important;
+        width: 100vw;
+      }
+      footer {
+        display: block !important;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #111;
+        color: #fff;
+        z-index: 100;
+        padding: 0.5rem 0;
+      }
+      footer span {
+        display: block;
+        text-align: center;
+        margin-bottom: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      footer img {
+        height: 22px !important;
+        margin: 0 8px !important;
+      }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -277,9 +314,11 @@
   </div>
   <footer>
     <span style="font-weight:600;display:block;margin-bottom:8px;">Suivez Retro X :</span>
-    <a href="https://open.spotify.com/intl-fr/artist/1nzsygZNqmL6J2CLFcFN46" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
-    <a href="https://www.instagram.com/ultradigi_ciele/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
-    <a href="https://www.youtube.com/@cykavizion4436" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
+    <div class="footer-logos">
+      <a href="https://open.spotify.com/intl-fr/artist/1nzsygZNqmL6J2CLFcFN46" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
+      <a href="https://www.instagram.com/ultradigi_ciele/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+      <a href="https://www.youtube.com/@cykavizion4436" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
+    </div>
   </footer>
 </body>
 </html>
