@@ -50,6 +50,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Précommande — Retro X</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Timer overlay sur le bouton précommande */
     .preorder-btn-wrapper {
@@ -270,7 +271,6 @@
       width: 105%;
       max-width: 550px;
       border-radius: 13px;
-      animation: float s ease-in-out infinite;
       /* Supprime ou commente la ligne ci-dessous */
       /* box-shadow: 0 20px 60px rgba(0, 0, 0, 0.774); */
       
@@ -311,15 +311,15 @@
       width: 720px;
       z-index: -1;
       opacity: 0.9;
-      animation: float 3.5s ease-in-out infinite;
+      /* animation: float 3.5s ease-in-out infinite; */
     }
 
     .vinyl:not(.vinyl-rotate) {
       transform: rotate(-10deg); /* Inclinaison seulement quand ça ne tourne pas */
     }
 
-    .vinyl-rotate {
-      animation: float-spin 3s linear infinite;
+    .vinyl-rotate{
+      /* animation: float-spin 3s linear infinite; */
     }
 
     @keyframes spin {
@@ -794,32 +794,81 @@ footer {
   cursor: pointer;
   z-index: 10000;
 }
+
+/* SUPPRIME TOUTES LES ANIMATIONS SUR PC AUSSI */
+.cover-fly,
+.vinyl-shadow,
+.vinyl-shadow-large,
+.vinyl,
+.vinyl-rotate {
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 0 18px 0;
+  position: relative;
+}
+.header-title {
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2em;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-decoration: underline; /* Souligné */
+  background: none; /* Pas de surlignage */
+  border-radius: 0;
+  padding: 4px 18px 4px 18px;
+  box-shadow: none;
+}
+.header-back {
+  font-size: 1.7em;
+  color: #fff !important; /* Flèche blanche */
+  margin-right: 18px;
+  text-decoration: none;
+  transition: color 0.2s;
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media (max-width: 600px) {
+  .header-back {
+    left: 10px;
+  }
+}
   </style>
 </head>
 <body>
-<a href="shop.html" style="position:absolute;top:20px;left:20px;color:#222;text-decoration:none;font-weight:bold;">← Retour au shop</a>
+  <header style="background: linear-gradient(90deg, #121213ee 0%, #161616ce 100%); padding: 0;">
+  <div class="header-content">
+    <a href="shop.html" class="header-back">&#8592;</a>
+    <span class="header-title">D.G.B.E</span>
+  </div>
+</header>
 <!-- Image promo mobile uniquement -->
-<div class="promo-mobile-only-wrapper">
-  <img src="promotel.png" alt="Promo Téléphone" class="promo-mobile-only" />
+<div class="promo-mobile-only-wrapper" style="margin-top:48px;">
+  <img src="vrai cover.png" alt="Cover Vinyle Retro X" class="promo-mobile-only" />
 </div>
 <!-- Début du fond gris mobile (jusqu'au bouton) -->
 <div class="hero-mobile-bg">
   <div class="container">
     <div class="left">
-      <img src="cover-retro-x.jpg" alt="Cover Vinyle Retro X" class="cover-fly mobile-hide" />
-      <div class="vinyl-shadow vinyl-shadow-large mobile-hide"></div>
-      <div class="vinyl-shadow mobile-hide"></div>
-      <img src="vinyle.png" alt="Vinyle" class="vinyl vinyl-rotate mobile-hide" />
+      <img src="vrai cover.png" alt="Cover Vinyle Retro X" class="cover-fly mobile-hide" />
+      <!-- Suppression des ombres et du vinyle animé -->
     </div>
     <div class="right">
-      <div class="right-inner">
+      <div class="right-inner" style="display:block !important;">
         <div class="title">Cortege Royal</div>
         <div class="artist">Retro X</div>
-        <!-- Suppression du compteur d’exemplaires -->
-        <!-- <div id="compteur-ex" style="margin-bottom:10px;font-weight:600;color:#ff0101;font-size:1.08em;"></div> -->
+        <!-- Suppression du compteur d’exemplaires et du timer -->
         <div class="preorder-btn-wrapper">
-          <div id="timer-preco"></div>
-          <a href="virement.html" class="preorder-btn" id="btn-preco">Précommander maintenant</a>
+          <a href="virement.html" class="preorder-btn" id="btn-preco" style="opacity:1;pointer-events:auto;">Précommander maintenant</a>
         </div>
       </div>
     </div>
@@ -868,14 +917,14 @@ footer {
         <p><strong>Label :</strong> DGBE</p>
         <p><strong>Format :</strong> 1 x 12"</p>
         <p><strong>Pays :</strong> France</p>
-        <p><strong>Genres :</strong> RAP</p>
+        <p><strong>Genres :</strong> Rock alternatif</p>
         <p><strong>Date de livraison estimée :</strong><br> 8 semaines après le lancement de la production</p>
       </div>
     </div>
     <!-- Images sous les informations -->
     <div class="images-row">
-      <img src="cover-retro-x.jpg" alt="Cover Retro X" class="zoomable-img" />
-      <img src="tracklist T1.png" alt="Tracklist T1" class="zoomable-img" />
+      <img src="vrai cover.png" alt="Cover Retro X" class="zoomable-img" />
+      <img src="tracklist T4.png" alt="Tracklist T4" class="zoomable-img" />
       <img src="vinyle.png" alt="Vinyle" class="zoomable-img" />
     </div>
   </div>
@@ -883,14 +932,6 @@ footer {
 </div>
 
 <script>
-setTimeout(function() {
-  var vinyl = document.querySelector('.vinyl-rotate');
-  if (vinyl) {
-    vinyl.classList.remove('vinyl-rotate');
-    vinyl.style.transform = 'rotate(0deg)';
-  }
-}, 9000); // 9 secondes
-
 // Lightbox zoom images
 const images = document.querySelectorAll('.zoomable-img');
 images.forEach(img => {
@@ -918,11 +959,7 @@ images.forEach(img => {
   });
 });
 </script>
-</div> <!-- fin du .container -->
-
-<div style="max-width:700px;margin:40px auto 0 auto;padding:18px 24px 10px 24px;background:#f7f7fa;border-radius:14px;color:#1d0b35;font-size:1.08em;text-align:center;font-weight:500;box-shadow:0 2px 12px #3a176a22;">
-  <span>Si le seuil de 50 précommandes n'est pas atteint, la production sera annulée et vous serez intégralement remboursé. Merci pour votre soutien !</span>
-</div>
+<!-- Suppression du texte seuil 50 précommandes -->
 <footer id="contact">
   <p>Suivez Retro X :</p>
   <a href="https://open.spotify.com/intl-fr/artist/1nzsygZNqmL6J2CLFcFN46" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
