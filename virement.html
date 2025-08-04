@@ -179,7 +179,8 @@
             nom: nom,
             email: email,
             adresse: adresse,
-            montant: "49.99" // Ajoute cette ligne
+            montant: "49.99",
+            image_url: "https://retroxgianni.github.io/RETROX/vinylevitrine.png"
           }).then(function(response) {
             alert('Merci ' + nom + ' ! Paiement reçu. Nous expédierons le vinyle à :\n' + adresse + '\nUn email de confirmation sera envoyé à : ' + email);
           }, function(error) {
@@ -215,7 +216,8 @@
     nom: nom,
     email: email,
     adresse: adresse,
-    montant: "49.99" // Ajoute cette ligne
+    montant: "49.99",
+    image_url: "https://retroxgianni.github.io/RETROX/vinylevitrine.png"
   }).then(function(response) {
     alert('Merci ' + nom + ' ! Votre précommande par virement est enregistrée.\nUn email de confirmation sera envoyé à : ' + email);
     // Optionnel : vider les champs
