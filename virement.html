@@ -178,7 +178,8 @@
           emailjs.send("service_8ajs8l4", "template_b6ziwri", {
             nom: nom,
             email: email,
-            adresse: adresse
+            adresse: adresse,
+            montant: "49.99" // Ajoute cette ligne
           }).then(function(response) {
             alert('Merci ' + nom + ' ! Paiement reçu. Nous expédierons le vinyle à :\n' + adresse + '\nUn email de confirmation sera envoyé à : ' + email);
           }, function(error) {
@@ -213,7 +214,8 @@
   emailjs.send("service_8ajs8l4", "template_b6ziwri", {
     nom: nom,
     email: email,
-    adresse: adresse
+    adresse: adresse,
+    montant: "49.99" // Ajoute cette ligne
   }).then(function(response) {
     alert('Merci ' + nom + ' ! Votre précommande par virement est enregistrée.\nUn email de confirmation sera envoyé à : ' + email);
     // Optionnel : vider les champs
