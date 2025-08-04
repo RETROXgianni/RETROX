@@ -104,7 +104,7 @@
     <div class="payment-desc">
       <strong style="font-size:1.35em;display:block;">Précommandez votre vinyle Cortege Royal — Retro X</strong>.<br>
       Édition limitée à 100 exemplaires.<br><br>
-      Prix : <strong>1,99€</strong> (hors frais de port)
+      Prix : <strong>49,99€</strong> (ttc)
     </div>
     <form id="paypal-form">
       <label class="form-label" for="nom">Nom complet</label>
@@ -160,7 +160,7 @@
 
         return actions.order.create({
           purchase_units: [{
-            amount: { value: '1.99', currency_code: 'EUR' },
+            amount: { value: '49.99', currency_code: 'EUR' },
             description: 'Précommande vinyle Cortege Royal — Retro X'
           }]
         });
