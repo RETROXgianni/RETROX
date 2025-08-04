@@ -127,12 +127,9 @@
   <input type="hidden" name="amount" value="49.99">
   <input type="hidden" name="currency_code" value="EUR">
   <button type="submit" style="background:#ffc439;color:#222;font-weight:700;font-size:1.1em;padding:0.7em 2em;border-radius:8px;border:none;cursor:pointer;">
-    Payer par PayPal
+    Continuer
   </button>
 </form>
-    <button id="virement-btn" class="submit-btn" type="button" style="margin-bottom:18px;">
-  Confirmer ma précommande par virement
-</button>
     <p style="font-size:0.98em;color:#e60808;margin-top:10px;">
       Merci d’indiquer votre <b>nom</b> et <b>adresse postale</b> dans le message du paiement ou par email à <a href="mailto:Retrox.contact@gmail.com">Retrox.contact@gmail.com</a>
     </p>
@@ -200,32 +197,6 @@
     (function(){
       emailjs.init("BFA68ksxg8-O7WYEi"); // Remplace par ta clé publique EmailJS
     })();
-  </script>
-  <script>
-    document.getElementById('virement-btn').addEventListener('click', function() {
-  const nom = document.getElementById('nom').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const adresse = document.getElementById('adresse').value.trim();
-
-  if (!nom || !email || !adresse) {
-    alert('Merci de remplir tous les champs avant de confirmer.');
-    return;
-  }
-
-  emailjs.send("service_8ajs8l4", "template_b6ziwri", {
-    nom: nom,
-    email: email,
-    adresse: adresse,
-    montant: "49.99",
-    image_url: "https://retroxgianni.github.io/RETROX/vinylevitrine.png"
-  }).then(function(response) {
-    alert('Merci ' + nom + ' ! Votre précommande par virement est enregistrée.\nUn email de confirmation sera envoyé à : ' + email);
-    // Optionnel : vider les champs
-    // document.getElementById('paypal-form').reset();
-  }, function(error) {
-    alert('Une erreur est survenue lors de l\'envoi de l\'email.');
-  });
-});
   </script>
 </body>
 </html>
