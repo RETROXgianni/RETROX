@@ -101,34 +101,85 @@
 </head>
 <body>
   <div class="payment-container">
-    <div class="payment-desc"><strong style="font-size:1.35em;display:block;">Précommandez votre vinyle Cortege Royal — Retro X</strong>.<br>Édition limitée à 100 exemplaires.<br><br>Prix : <strong>29,99€</strong> (hors frais de port)</div>
-    <div class="bank-details">
-      <strong>Coordonnées bancaires :</strong><br>
-      IBAN : <span style="font-family:monospace">FR76 1234 5678 9012 3456 7890 123</span><br>
-      BIC : <span style="font-family:monospace">ABCDEFGHXXX</span><br>
-      Titulaire : Retro X / DGBE<br>
-      Banque : Banque Exemple
+    <div class="payment-desc">
+      <strong style="font-size:1.35em;display:block;">Précommandez votre vinyle Cortege Royal — Retro X</strong>.<br>
+      Édition limitée à 100 exemplaires.<br><br>
+      Prix : <strong>49,99€</strong> (hors frais de port)
     </div>
-    <form id="virement-form">
+    <form id="paypal-form">
       <label class="form-label" for="nom">Nom complet</label>
       <input class="form-input" type="text" id="nom" name="nom" required>
       <label class="form-label" for="email">Email</label>
       <input class="form-input" type="email" id="email" name="email" required>
-      <label class="form-label" for="adresse">Adresse complète (pour l'envoi du vinyle)</label>
+      <label class="form-label" for="adresse">Adresse complète </label>
       <textarea class="form-input" id="adresse" name="adresse" rows="3" required></textarea>
-      <button type="submit" class="submit-btn">Envoyer la demande</button>
+      <div id="paypal-button-container" style="margin: 18px 0;"></div>
     </form>
     <div class="info">
-      Après avoir envoyé le formulaire, tu recevras un email avec les instructions pour le virement.<br>
-      Dès réception du paiement, le vinyle sera expédié à l'adresse indiquée.
+      Après paiement, tu recevras un email de confirmation.<br>
+      Dès réception du paiement, le vinyle sera expédié à l'adresse indiquée suite à sa production.
     </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="margin:18px 0;">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="Retrox.contact@gmail.com">
+      <input type="hidden" name="item_name" value="Précommande Vinyle Cortege Royal — Retro X">
+      <input type="hidden" name="amount" value="49.99">
+      <input type="hidden" name="currency_code" value="EUR">
+      <button type="submit" style="background:#ffc439;color:#222;font-weight:700;font-size:1.1em;padding:0.7em 2em;border-radius:8px;border:none;cursor:pointer;">
+        Payer par PayPal
+      </button>
+    </form>
+    <p style="font-size:0.98em;color:#444;margin-top:10px;">
+      Merci d’indiquer votre <b>nom</b> et <b>adresse postale</b> dans le message du paiement ou par email à <a href="mailto:Retrox.contact@gmail.com">Retrox.contact@gmail.com</a>
+    </p>
   </div>
+
+  <!-- Intégration PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=TON_CLIENT_ID_PAYPAL&currency=EUR"></script>
   <script>
-    document.getElementById('virement-form').addEventListener('submit', function(e) {
+    // Empêche la soumission classique du formulaire
+    document.getElementById('paypal-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Merci ! Votre demande a été envoyée. Vous recevrez un email avec les instructions pour le virement.');
-      this.reset();
     });
+
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        // Vérifie que les champs sont remplis
+        const nom = document.getElementById('nom').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const adresse = document.getElementById('adresse').value.trim();
+        if (!nom || !email || !adresse) {
+          alert('Merci de remplir tous les champs avant de payer.');
+          return false;
+        }
+        // Stocke les infos dans le localStorage pour la suite (ou à envoyer à un serveur)
+        localStorage.setItem('commande_nom', nom);
+        localStorage.setItem('commande_email', email);
+        localStorage.setItem('commande_adresse', adresse);
+
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '29.99', currency_code: 'EUR' },
+            description: 'Précommande vinyle Cortege Royal — Retro X'
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          // Récupère les infos client
+          const nom = localStorage.getItem('commande_nom');
+          const email = localStorage.getItem('commande_email');
+          const adresse = localStorage.getItem('commande_adresse');
+          // Envoie les infos à ton adresse mail via un service tiers (ex: Formspree, EmailJS, ou serveur perso)
+          // Exemple simple : affichage à l'écran
+          alert('Merci ' + nom + ' ! Paiement reçu. Nous expédierons le vinyle à :\n' + adresse + '\nUn email de confirmation sera envoyé à : ' + email);
+          // Nettoie le localStorage
+          localStorage.removeItem('commande_nom');
+          localStorage.removeItem('commande_email');
+          localStorage.removeItem('commande_adresse');
+        });
+      }
+    }).render('#paypal-button-container');
   </script>
 </body>
 </html>
