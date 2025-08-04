@@ -104,7 +104,7 @@
     <div class="payment-desc">
       <strong style="font-size:1.35em;display:block;">Précommandez votre vinyle Cortege Royal — Retro X</strong>.<br>
       Édition limitée à 100 exemplaires.<br><br>
-      Prix : <strong>49,99€</strong> (hors frais de port)
+      Prix : <strong>1,99€</strong> (hors frais de port)
     </div>
     <form id="paypal-form">
       <label class="form-label" for="nom">Nom complet</label>
@@ -119,16 +119,17 @@
       Après paiement, tu recevras un email de confirmation.<br>
       Dès réception du paiement, le vinyle sera expédié à l'adresse indiquée suite à sa production.
     </div>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="margin:18px 0;">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="Retrox.contact@gmail.com">
-      <input type="hidden" name="item_name" value="Précommande Vinyle Cortege Royal — Retro X">
-      <input type="hidden" name="amount" value="49.99">
-      <input type="hidden" name="currency_code" value="EUR">
-      <button type="submit" style="background:#ffc439;color:#222;font-weight:700;font-size:1.1em;padding:0.7em 2em;border-radius:8px;border:none;cursor:pointer;">
-        Suivant
-      </button>
-    </form>
+    <!-- À placer dans ta page virement.html à la place du bouton SDK -->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="margin:18px 0;">
+  <input type="hidden" name="cmd" value="_xclick">
+  <input type="hidden" name="business" value="Retrox.contact@gmail.com">
+  <input type="hidden" name="item_name" value="Précommande Vinyle Cortege Royal — Retro X">
+  <input type="hidden" name="amount" value="1.99">
+  <input type="hidden" name="currency_code" value="EUR">
+  <button type="submit" style="background:#ffc439;color:#222;font-weight:700;font-size:1.1em;padding:0.7em 2em;border-radius:8px;border:none;cursor:pointer;">
+    Payer par PayPal
+  </button>
+</form>
     <p style="font-size:0.98em;color:#e60808;margin-top:10px;">
       Merci d’indiquer votre <b>nom</b> et <b>adresse postale</b> dans le message du paiement ou par email à <a href="mailto:Retrox.contact@gmail.com">Retrox.contact@gmail.com</a>
     </p>
@@ -159,7 +160,7 @@
 
         return actions.order.create({
           purchase_units: [{
-            amount: { value: '29.99', currency_code: 'EUR' },
+            amount: { value: '1.99', currency_code: 'EUR' },
             description: 'Précommande vinyle Cortege Royal — Retro X'
           }]
         });
