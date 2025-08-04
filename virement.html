@@ -130,6 +130,9 @@
     Payer par PayPal
   </button>
 </form>
+    <button id="virement-btn" class="submit-btn" type="button" style="margin-bottom:18px;">
+  Confirmer ma précommande par virement
+</button>
     <p style="font-size:0.98em;color:#e60808;margin-top:10px;">
       Merci d’indiquer votre <b>nom</b> et <b>adresse postale</b> dans le message du paiement ou par email à <a href="mailto:Retrox.contact@gmail.com">Retrox.contact@gmail.com</a>
     </p>
@@ -167,13 +170,21 @@
       },
       onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
-          // Récupère les infos client
           const nom = localStorage.getItem('commande_nom');
           const email = localStorage.getItem('commande_email');
           const adresse = localStorage.getItem('commande_adresse');
-          // Envoie les infos à ton adresse mail via un service tiers (ex: Formspree, EmailJS, ou serveur perso)
-          // Exemple simple : affichage à l'écran
-          alert('Merci ' + nom + ' ! Paiement reçu. Nous expédierons le vinyle à :\n' + adresse + '\nUn email de confirmation sera envoyé à : ' + email);
+
+          // Envoi automatique via EmailJS
+          emailjs.send("service_8ajs8l4", "template_b6ziwri", {
+            nom: nom,
+            email: email,
+            adresse: adresse
+          }).then(function(response) {
+            alert('Merci ' + nom + ' ! Paiement reçu. Nous expédierons le vinyle à :\n' + adresse + '\nUn email de confirmation sera envoyé à : ' + email);
+          }, function(error) {
+            alert('Paiement reçu, mais une erreur est survenue lors de l\'envoi de l\'email.');
+          });
+
           // Nettoie le localStorage
           localStorage.removeItem('commande_nom');
           localStorage.removeItem('commande_email');
@@ -181,6 +192,36 @@
         });
       }
     }).render('#paypal-button-container');
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("BFA68ksxg8-O7WYEi"); // Remplace par ta clé publique EmailJS
+    })();
+  </script>
+  <script>
+    document.getElementById('virement-btn').addEventListener('click', function() {
+  const nom = document.getElementById('nom').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const adresse = document.getElementById('adresse').value.trim();
+
+  if (!nom || !email || !adresse) {
+    alert('Merci de remplir tous les champs avant de confirmer.');
+    return;
+  }
+
+  emailjs.send("service_8ajs8l4", "template_b6ziwri", {
+    nom: nom,
+    email: email,
+    adresse: adresse
+  }).then(function(response) {
+    alert('Merci ' + nom + ' ! Votre précommande par virement est enregistrée.\nUn email de confirmation sera envoyé à : ' + email);
+    // Optionnel : vider les champs
+    // document.getElementById('paypal-form').reset();
+  }, function(error) {
+    alert('Une erreur est survenue lors de l\'envoi de l\'email.');
+  });
+});
   </script>
 </body>
 </html>
